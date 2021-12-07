@@ -3,22 +3,93 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/dialog_background"
-    android:gravity="center_horizontal">
+    android:background="@drawable/dialog_background">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="ADD MINI SCREEN"
         android:textSize="25dp"
-        android:textColor="#0288D1"
-        android:layout_marginTop="45dp"
-        android:layout_marginDown="25dp"/>
+        android:textColor="@color/dark_primary_color"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"/>
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginDown="25dp"
-        android:text="Pomodoro"/>
+        android:layout_marginLeft="42dp"
+        android:text="Pomodoro"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:textColor="@color/dark_primary_color"
+        android:buttonTint="@color/dark_primary_color"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="42dp"
+        android:text="Daily-task-list"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:textColor="@color/dark_primary_color"
+        android:buttonTint="@color/dark_primary_color"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="42dp"
+        android:text="Schedule"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:textColor="@color/dark_primary_color"
+        android:buttonTint="@color/dark_primary_color"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="42dp"
+        android:text="Pomodoro Statistic"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:textColor="@color/dark_primary_color"
+        android:buttonTint="@color/dark_primary_color"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="42dp"
+        android:text="Daily-task-list Statistic"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:textColor="@color/dark_primary_color"
+        android:buttonTint="@color/dark_primary_color"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="42dp"
+        android:text="Schedule Statistic"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:textColor="@color/dark_primary_color"
+        android:buttonTint="@color/dark_primary_color"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="Update"
+        android:background="@drawable/button_background"/>
+
+
+
 
 </LinearLayout>
