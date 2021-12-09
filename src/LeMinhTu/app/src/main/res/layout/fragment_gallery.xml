@@ -7,13 +7,6 @@
     tools:context=".MainActivity"
     android:background="@drawable/homepage_background">
 
-    <data>
-        <variable>
-            name="GalleryViewModel"
-            type="com.example.koekata.ui.gallery.GalleryViewModel"/>
-        </variable>
-    </data>
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
