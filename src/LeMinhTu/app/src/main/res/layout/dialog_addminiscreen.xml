@@ -16,6 +16,7 @@
         android:layout_marginBottom="10dp"/>
 
     <CheckBox
+        android:id="@+id/cbPomodoro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="42dp"
@@ -27,6 +28,7 @@
         />
 
     <CheckBox
+        android:id="@+id/cbDailyTaskList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="42dp"
@@ -38,6 +40,7 @@
         />
 
     <CheckBox
+        android:id="@+id/cbSchedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="42dp"
@@ -49,6 +52,7 @@
         />
 
     <CheckBox
+        android:id="@+id/cbPomodoroStatistic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="42dp"
@@ -60,6 +64,7 @@
         />
 
     <CheckBox
+        android:id="@+id/cbDailyTaskListStatistic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="42dp"
@@ -71,6 +76,7 @@
         />
 
     <CheckBox
+        android:id="@+id/cbScheduleStatistic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="42dp"
@@ -82,6 +88,7 @@
         />
 
     <Button
+        android:id="@+id/btnUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
