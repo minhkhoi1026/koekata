@@ -38,9 +38,20 @@
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.1648148148148148" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/drawable/ic_menu_statistics.xml" value="0.1648148148148148" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/drawable/ic_menu_wakeupcalculator.xml" value="0.1648148148148148" />
+        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/drawable/ic_pomodoro_complete.xml" value="0.15092592592592594" />
+        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/drawable/ic_pomodoro_edit.xml" value="0.15092592592592594" />
+        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/drawable/ic_pomodoro_relax.xml" value="0.15092592592592594" />
+        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/drawable/ic_pomodoro_start.xml" value="0.15092592592592594" />
+        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/drawable/nav_bar_user.xml" value="0.15092592592592594" />
+        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/layout/app_bar_main.xml" value="0.13043478260869565" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/layout/content_main.xml" value="0.10960144927536232" />
-        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/layout/fragment_gallery.xml" value="0.22" />
+        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/layout/dialog_addminiscreen.xml" value="0.12545289855072464" />
+        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/layout/dialog_pomodoro_setting.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/layout/fragment_gallery.xml" value="0.10666666666666667" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/layout/fragment_home.xml" value="0.10960144927536232" />
+        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/layout/fragment_slideshow.xml" value="0.1" />
+        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/LeMinhTu/app/src/main/res/layout/nav_header_main.xml" value="0.1" />
       </map>
     </option>
   </component>

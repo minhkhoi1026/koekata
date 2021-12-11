@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background">
+
+    <TextView
+        android:id="@+id/text_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="SETTING"
+        android:textSize="25dp"
+        android:textColor="@color/dark_primary_color"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_study_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_setting"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Study Time"
+        android:textSize="20dp"
+        android:layout_marginLeft="42dp"
+        android:textColor="@color/dark_primary_color"/>
+
+
+    <TextView
+        android:id="@+id/text_short_relax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_study_time"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Short Relax Time"
+        android:textSize="20dp"
+        android:layout_marginLeft="42dp"
+        android:textColor="@color/dark_primary_color"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_color"
+        app:layout_constraintTop_toBottomOf="@id/text_setting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/text_short_relax"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="42dp" />
+
+    <TextView
+        android:id="@+id/text_long_relax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_short_relax"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Long Relax Time"
+        android:textSize="20dp"
+        android:layout_marginLeft="42dp"
+        android:textColor="@color/dark_primary_color"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_color"
+        app:layout_constraintTop_toBottomOf="@id/text_setting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/text_long_relax"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="42dp" />
+
+
+    <TextView
+        android:id="@+id/text_alarm_sound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_long_relax"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Alarm Sound"
+        android:textSize="20dp"
+        android:layout_marginLeft="42dp"
+        android:textColor="@color/dark_primary_color"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_color"
+        app:layout_constraintTop_toBottomOf="@id/text_setting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/text_alarm_sound"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="42dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
