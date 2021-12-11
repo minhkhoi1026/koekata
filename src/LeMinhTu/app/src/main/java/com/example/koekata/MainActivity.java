@@ -35,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openAddMiniScreenDialog();
-            }
-
-
-        });
+//        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openAddMiniScreenDialog();
+//            }
+//
+//
+//        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         navigationView.setItemIconTintList(null);
@@ -59,26 +59,7 @@ public class MainActivity extends AppCompatActivity {
         
     }
 
-    private void openAddMiniScreenDialog() {
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_addminiscreen);
 
-        Window window = dialog.getWindow();
-
-        if (window == null) {
-            return;
-        }
-
-        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-        windowAttributes.gravity = Gravity.CENTER;
-        window.setAttributes(windowAttributes);
-
-        dialog.show();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
