@@ -2,6 +2,8 @@ package com.example.koekata.ui.main;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -52,6 +54,8 @@ public class MainActivity extends BaseActivity {
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         navigationView.setItemIconTintList(null);
+        TextView textViewLogOut = navigationView.getHeaderView(0).findViewById(R.id.text_view_logout);
+        textViewLogOut.setOnClickListener(view -> onLogOutSelected());
         // navigationView.setItemTextColor();
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -62,10 +66,7 @@ public class MainActivity extends BaseActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
