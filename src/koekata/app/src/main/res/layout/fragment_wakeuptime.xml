@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edit_text_wakeup_hour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edit_text_wakeup_minute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button_submit_wakeup_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="calculate"/>
+
+    <TextView
+        android:id="@+id/text_view_result_1_wakeup_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="text view result 1"/>
+    <TextView
+        android:id="@+id/text_view_result_2_wakeup_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="text view result 2"/>
+    <TextView
+        android:id="@+id/text_view_result_3_wakeup_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="text view result 3"/>
+    <TextView
+        android:id="@+id/text_view_result_4_wakeup_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="text view result 4"/>
+</LinearLayout>

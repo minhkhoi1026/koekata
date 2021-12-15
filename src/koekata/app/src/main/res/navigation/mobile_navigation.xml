@@ -12,9 +12,15 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_pomodoro"
         android:name="com.example.koekata.ui.main.Pomodoro.PomodoroFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_pomodoro"
+        tools:layout="@layout/fragment_pomodoro" />
+
+    <fragment
+        android:id="@+id/nav_wakeup_time"
+        android:name="com.example.koekata.ui.main.WakeupTime.WakeupTimeFragment"
+        android:label="@string/menu_wakeup_time"
         tools:layout="@layout/fragment_pomodoro" />
 
 </navigation>
