@@ -1,5 +1,7 @@
 package com.example.koekata.models;
 
+import static com.example.koekata.utils.Constants.*;
+
 import android.util.Log;
 
 import androidx.lifecycle.MediatorLiveData;
@@ -21,6 +23,10 @@ public class UserRepository {
         return pomodorosLiveData;
     }
 
+    public MediatorLiveData<HashMap<String, Long>> getPomodoroSettingsLiveData() {
+        return pomodoroSettingsLiveData;
+    }
+
     public MediatorLiveData<HashMap<String, UserTask>> getTasksLiveData() {
         return tasksLiveData;
     }
@@ -35,17 +41,28 @@ public class UserRepository {
 
     private final MediatorLiveData<Long> homeStatusLiveData = new MediatorLiveData<>();
     private final MediatorLiveData<HashMap<String, Long>> pomodorosLiveData = new MediatorLiveData<>();
+    private final MediatorLiveData<HashMap<String, Long>> pomodoroSettingsLiveData = new MediatorLiveData<>();
     private final MediatorLiveData<HashMap<String, UserTask>> tasksLiveData = new MediatorLiveData<>();
     private final MediatorLiveData<HashMap<String, Long>> taskHistoryLiveData = new MediatorLiveData<>();
     private final MediatorLiveData<HashMap<String, UserEvent>> eventsLiveData = new MediatorLiveData<>();
+
     private final DatabaseReference homeStatusRef;
     private final DatabaseReference pomodorosRef;
+    private final DatabaseReference pomodoroSettingsRef;
     private final DatabaseReference tasksRef;
     private final DatabaseReference taskHistoryRef;
     private final DatabaseReference eventsRef;
 
     public void addPomodoro(Long pomodoro) {
         pomodorosRef.push().setValue(pomodoro);
+    }
+
+    public void setPomodoroTime(Long study, Long shortRelax, long longRelax) {
+        HashMap<String, Long> settings = new HashMap<>();
+        settings.put(STUDY_TIME, study);
+        settings.put(SHORT_RELAX_TIME, shortRelax);
+        settings.put(LONG_RELAX_TIME, longRelax);
+        pomodoroSettingsRef.setValue(settings);
     }
 
     public void updateHomeStatus(Long homeStatus) {
@@ -87,9 +104,13 @@ public class UserRepository {
         GenericTypeIndicator<Long> homeStatusType = new GenericTypeIndicator<Long>() {};
         bindRefToLiveData(homeStatusLiveData, homeStatusRef, homeStatusType);
 
-        pomodorosRef = ref.child("pomodoros");
+        pomodorosRef = ref.child("pomodoros").child("success");
         GenericTypeIndicator<HashMap<String, Long>> pomodorosType = new GenericTypeIndicator<HashMap<String, Long>>() {};
         bindRefToLiveData(pomodorosLiveData, pomodorosRef, pomodorosType);
+
+        pomodoroSettingsRef = ref.child("pomodoros").child("setting");
+        GenericTypeIndicator<HashMap<String, Long>> pomodoroSettingsType = new GenericTypeIndicator<HashMap<String, Long>>() {};
+        bindRefToLiveData(pomodoroSettingsLiveData, pomodoroSettingsRef, pomodoroSettingsType);
 
         tasksRef = ref.child("tasks");
         GenericTypeIndicator<HashMap<String, UserTask>> tasksType = new GenericTypeIndicator<HashMap<String, UserTask>>() {};

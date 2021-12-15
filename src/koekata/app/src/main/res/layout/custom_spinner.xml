@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     android:text="Androchunk"
-    android:textColor="@android:color/holo_red_light"
+    android:textColor="@color/primary_color"
     android:textSize="20sp">
 
 </CheckedTextView>

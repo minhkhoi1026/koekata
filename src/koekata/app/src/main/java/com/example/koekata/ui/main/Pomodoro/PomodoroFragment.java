@@ -7,11 +7,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -21,7 +24,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -53,7 +55,7 @@ public class PomodoroFragment extends DaggerFragment {
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
 
-    Spinner studySpinner, shortRelaxSpinner, longRelaxSpinner, soundAlarm;
+    Spinner studySpinner, shortRelaxSpinner, longRelaxSpinner, soundAlarmSpinner;
 
     @Inject
     ViewModelProviderFactory providerFactory;
@@ -77,10 +79,6 @@ public class PomodoroFragment extends DaggerFragment {
         img = pomodoroView.findViewById(R.id.image_view_progress);
         btnPomodoro = pomodoroView.findViewById(R.id.button_pomodoro);
         btnEdit = pomodoroView.findViewById(R.id.button_edit);
-
-        studySpinner = pomodoroView.findViewById(R.id.spinner_study);
-        shortRelaxSpinner = pomodoroView.findViewById(R.id.spin)
-
 
         setOnUpdateStatus(pomodoroView);
         setOnNewCountDown();
@@ -112,15 +110,56 @@ public class PomodoroFragment extends DaggerFragment {
                 editDialog.findViewById(R.id.button_update).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        long studyTime = Long.parseLong(studySpinner.getSelectedItem().toString());
+                        long shortRelaxTime = Long.parseLong(shortRelaxSpinner.getSelectedItem().toString());
+                        long longRelaxTime = Long.parseLong(longRelaxSpinner.getSelectedItem().toString());
+                        pomodoroViewModel.changeSettingTime(studyTime, shortRelaxTime, longRelaxTime);
                         editDialog.dismiss();
                     }
                 });
 
                 editDialog.show();
 
+                studySpinner = editDialog.findViewById(R.id.spinner_study);
+                shortRelaxSpinner = editDialog.findViewById(R.id.spinner_short_relax);
+                longRelaxSpinner = editDialog.findViewById(R.id.spinner_long_relax);
+                soundAlarmSpinner = editDialog.findViewById(R.id.spinner_alarm_sound);
+
+                setStudySpinnerSelect(editDialog);
+                setShortRelaxSelect(editDialog);
+                setLongRelaxSelect(editDialog);
             }
         });
+    }
 
+    private void setStudySpinnerSelect(@NonNull Dialog diaglog) {
+        ArrayAdapter studyAdapter=ArrayAdapter.createFromResource(
+                diaglog.getContext(),
+                R.array.study_time,
+                R.layout.custom_spinner
+                );
+        studyAdapter.setDropDownViewResource(R.layout.custom_dropdown_spiner);
+        studySpinner.setAdapter(studyAdapter);
+    }
+
+    private void setShortRelaxSelect(@NonNull Dialog dialog){
+        ArrayAdapter shortRelaxAdapter=ArrayAdapter.createFromResource(
+                dialog.getContext(),
+                R.array.short_relax_time,
+                R.layout.custom_spinner
+        );
+        shortRelaxAdapter.setDropDownViewResource(R.layout.custom_dropdown_spiner);
+        shortRelaxSpinner.setAdapter(shortRelaxAdapter);
+    }
+
+    private void setLongRelaxSelect(@NonNull Dialog dialog){
+        ArrayAdapter longRelaxAdapter=ArrayAdapter.createFromResource(
+                dialog.getContext(),
+                R.array.short_relax_time,
+                R.layout.custom_spinner
+        );
+        longRelaxAdapter.setDropDownViewResource(R.layout.custom_dropdown_spiner);
+        longRelaxSpinner.setAdapter(longRelaxAdapter);
     }
 
     private void setOnUpdateStatus(View view) {
