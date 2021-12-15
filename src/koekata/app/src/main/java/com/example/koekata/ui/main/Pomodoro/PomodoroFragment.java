@@ -79,7 +79,7 @@ public class PomodoroFragment extends DaggerFragment {
         btnEdit = pomodoroView.findViewById(R.id.button_edit);
 
         studySpinner = pomodoroView.findViewById(R.id.spinner_study);
-        shortRelaxSpinner = pomodoroView.findViewById(R.id.spin)
+        shortRelaxSpinner = pomodoroView.findViewById(R.id.spin);
 
 
         setOnUpdateStatus(pomodoroView);
