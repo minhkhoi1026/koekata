@@ -17,17 +17,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/progress_bar" />
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="@style/CircularDeterminateProgressBar"
-        android:layout_width="270dp"
-        android:layout_height="270dp"
-        tools:progress="100"
-        android:layout_marginTop="120dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <ImageView
         android:id="@+id/image_view_progress"
         android:layout_width="wrap_content"
@@ -38,6 +27,17 @@
         app:layout_constraintEnd_toEndOf="@+id/progress_bar"
         app:layout_constraintStart_toStartOf="@+id/progress_bar"
         app:layout_constraintTop_toTopOf="@+id/progress_bar" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/CircularDeterminateProgressBar"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        tools:progress="100"
+        android:layout_marginTop="120dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/text_status"

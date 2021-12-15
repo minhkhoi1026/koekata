@@ -3,6 +3,7 @@ package com.example.koekata.ui.main.Pomodoro;
 import static com.example.koekata.utils.Constants.*;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
@@ -30,9 +31,12 @@ public class PomodoroViewModel extends ViewModel {
         mAlarmSound = new MediatorLiveData<>();
         mStatus.setValue(STATIC_STATUS);
         mCountPomodoro = 0;
+
         // set initial value
         mCountDownTimeInMillis.setValue(DEFAULT_STUDY_TIME);
         mStudyTime.setValue(DEFAULT_STUDY_TIME);
+        mShortRelaxTime.setValue(DEFAULT_SHORT_RELAX_TIME);
+        mLongRelaxTime.setValue(DEFAULT_LONG_RELAX_TIME);
     }
 
     public LiveData<String> getStatus() {
@@ -50,59 +54,54 @@ public class PomodoroViewModel extends ViewModel {
 
     void clickUpdateStatus(){
         cancelCountDown();
+        long totalTime;
         if(mStatus.getValue().toString().equals(STATIC_STATUS)){
             mStatus.postValue(STUDY_STATUS);
-            mCountDownTimeInMillis.postValue(mStudyTime.getValue());
+            totalTime = mStudyTime.getValue();
+            mCountDownTimeInMillis.setValue(totalTime);
+            mTimeLeftInMillis.setValue(totalTime);
+            startCountDown();
         }
         else if(mStatus.getValue().toString().equals(STUDY_STATUS)){
             mStatus.postValue(STATIC_STATUS);
-            mCountDownTimeInMillis.postValue(mStudyTime.getValue());
+            totalTime = mStudyTime.getValue();
+            mCountDownTimeInMillis.setValue(totalTime);
+            mTimeLeftInMillis.setValue(totalTime);
         }
         else if(mStatus.getValue().toString().equals(DONE_STATUS)){
             mStatus.postValue(RELAX_STATUS);
             if(mCountPomodoro != 4){
-                mCountDownTimeInMillis.postValue(mShortRelaxTime.getValue());
+                totalTime = mShortRelaxTime.getValue();
             }
             else{
-                mCountDownTimeInMillis.postValue(mLongRelaxTime.getValue());
+                totalTime = mLongRelaxTime.getValue();
             }
-
+            mCountDownTimeInMillis.setValue(totalTime);
+            mTimeLeftInMillis.setValue(totalTime);
+            startCountDown();
         }
         else{
             mStatus.postValue(STATIC_STATUS);
-            mCountDownTimeInMillis.postValue(mStudyTime.getValue());
+            totalTime = mStudyTime.getValue();
+            mCountDownTimeInMillis.setValue(totalTime);
+            mTimeLeftInMillis.setValue(totalTime);
         }
-        mTimeLeftInMillis.postValue(mCountDownTimeInMillis.getValue());
-        startCountDown();
     }
 
     void autoUpdateStatus(){
-        cancelCountDown();
         if(mStatus.getValue().toString().equals(STUDY_STATUS)){
             mStatus.postValue(DONE_STATUS);
-            mCountDownTimeInMillis.postValue(new Long(0));
         }
         else if(mStatus.getValue().toString().equals(RELAX_STATUS)){
             mStatus.postValue(STATIC_STATUS);
-            mCountDownTimeInMillis.postValue(mStudyTime.getValue());
             mCountPomodoro = mCountPomodoro % 4 + 1;
         }
         else{
             return;
         }
-
-        mTimeLeftInMillis.postValue(mCountDownTimeInMillis.getValue());
-        startCountDown();
-
     }
 
     private void startCountDown() {
-        if(mStatus.getValue().toString().equals(DONE_STATUS)
-            || mStatus.getValue().toString().equals(STATIC_STATUS))
-        {
-            return;
-        }
-
         mCountDownTimer = new CountDownTimer(mCountDownTimeInMillis.getValue(), 1000) {
             @Override
             public void onTick(long milliUntileEnd) {

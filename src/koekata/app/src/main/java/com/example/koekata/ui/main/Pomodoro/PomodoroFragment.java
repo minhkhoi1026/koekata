@@ -76,23 +76,26 @@ public class PomodoroFragment extends Fragment {
         liveStatus.observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                textStatus.setText(STATIC_STATUS);
                 if(s == STATIC_STATUS){
-                    progressBar.setProgress(0);
+                    textStatus.setText(STATIC_STATUS);
+                    progressBar.setProgress(100);
                     img.setImageResource(R.drawable.ic_pomodoro_start);
                     btnPomodoro.setText(STATIC_BUTTON);
                 }
                 else if(s == STUDY_STATUS){
+                    textStatus.setText(STUDY_STATUS);
                     progressBar.setProgress(0);
                     Glide.with(view).load(R.drawable.pomodoro_study).into(img);
                     btnPomodoro.setText(STUDY_BUTTON);
                 }
                 else if(s == DONE_STATUS){
+                    textStatus.setText(DONE_STATUS);
                     progressBar.setProgress(100);
                     img.setImageResource(R.drawable.ic_pomodoro_complete);
                     btnPomodoro.setText(DONE_BUTTON);
                 }
                 else{
+                    textStatus.setText(RELAX_STATUS);
                     progressBar.setProgress(0);
                     Glide.with(view).load(R.drawable.pomodoro_relax).into(img);
                     btnPomodoro.setText(RELAX_BUTON);
@@ -120,11 +123,11 @@ public class PomodoroFragment extends Fragment {
         liveTimeLeftInMillis.observe(getViewLifecycleOwner(), new Observer<Long>() {
             @Override
             public void onChanged(Long timeLeft) {
-                progressBar.setProgress((int) (timeLeft/countDownTime));
                 int minutes = (int)(timeLeft /1000)/60;
                 int seconds = (int)(timeLeft /1000)%60;
 
                 String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+                progressBar.setProgress((int)(100 - (timeLeft*1.0/countDownTime)*100));
                 textTime.setText(timeFormatted);
             }
         });

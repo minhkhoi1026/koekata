@@ -12,5 +12,8 @@ public class Constants {
     public static final String STUDY_BUTTON = "Reset";
     public static final String DONE_BUTTON = "Relax";
     public static final String RELAX_BUTON = "Skip";
-    public static final Long DEFAULT_STUDY_TIME = 25L * 60 * 1000;
+
+    public static final Long DEFAULT_STUDY_TIME = 25L * 1000;
+    public static final Long DEFAULT_SHORT_RELAX_TIME = 5L * 1000;
+    public static final Long DEFAULT_LONG_RELAX_TIME = 15L * 1000;
 }
