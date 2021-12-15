@@ -6,6 +6,7 @@ package com.example.koekata.di.main;
 import androidx.lifecycle.ViewModel;
 
 import com.example.koekata.di.app.ViewModelKey;
+import com.example.koekata.ui.main.Schedule.ScheduleViewModel;
 import com.example.koekata.ui.main.WakeupTime.WakeupTimeViewModel;
 
 import dagger.Binds;
@@ -24,4 +25,9 @@ public abstract class MainViewModelModule {
     @IntoMap
     @ViewModelKey(WakeupTimeViewModel.class)
     public abstract ViewModel bindWakeupTimeViewModel(WakeupTimeViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ScheduleViewModel.class)
+    public abstract ViewModel bindScheduleViewModel(ScheduleViewModel viewModel);
 }

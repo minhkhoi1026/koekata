@@ -10,6 +10,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_pomodoro">Pomodoro</string>
     <string name="menu_wakeup_time">Wakeup Time</string>
+    <string name="menu_schedule">Schedule</string>
 
     <string-array name="study_time">
         <item>15</item>

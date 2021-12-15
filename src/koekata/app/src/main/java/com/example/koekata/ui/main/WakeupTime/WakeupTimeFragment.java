@@ -38,6 +38,7 @@ public class WakeupTimeFragment extends DaggerFragment {
 
     @Inject
     ViewModelProviderFactory viewModelProviderFactory;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         wakeupTimeViewModel =
