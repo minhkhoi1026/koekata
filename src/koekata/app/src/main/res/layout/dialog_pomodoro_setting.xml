@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:padding="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/dialog_background">
@@ -14,8 +16,6 @@
         android:text="SETTING"
         android:textSize="25dp"
         android:textColor="@color/dark_primary_color"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -29,7 +29,18 @@
         android:text="Study Time"
         android:textSize="20dp"
         android:layout_marginLeft="42dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/dark_primary_color"/>
+
+    <Spinner
+        android:id="@+id/spinner_study"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/text_study_time"
+        app:layout_constraintStart_toEndOf="@id/text_setting"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:entries="@array/study_time"
+        android:layout_marginRight="42dp" />
 
 
     <TextView
@@ -41,16 +52,17 @@
         android:text="Short Relax Time"
         android:textSize="20dp"
         android:layout_marginLeft="42dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/dark_primary_color"/>
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:id="@+id/spinner_short_relax"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:background="@color/primary_color"
-        app:layout_constraintTop_toBottomOf="@id/text_setting"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/text_short_relax"
+        app:layout_constraintTop_toTopOf="@id/text_short_relax"
+        app:layout_constraintStart_toEndOf="@id/text_setting"
         app:layout_constraintEnd_toEndOf="parent"
+        android:entries="@array/short_relax_time"
         android:layout_marginRight="42dp" />
 
     <TextView
@@ -62,16 +74,17 @@
         android:text="Long Relax Time"
         android:textSize="20dp"
         android:layout_marginLeft="42dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/dark_primary_color"/>
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:id="@+id/spinner_long_relax"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:background="@color/primary_color"
-        app:layout_constraintTop_toBottomOf="@id/text_setting"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/text_long_relax"
+        app:layout_constraintTop_toTopOf="@id/text_long_relax"
+        app:layout_constraintStart_toEndOf="@id/text_setting"
         app:layout_constraintEnd_toEndOf="parent"
+        android:entries="@array/long_relax_time"
         android:layout_marginRight="42dp" />
 
 
@@ -84,16 +97,28 @@
         android:text="Alarm Sound"
         android:textSize="20dp"
         android:layout_marginLeft="42dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/dark_primary_color"/>
 
     <Spinner
+        android:id="@+id/spinner_alarm_sound"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/text_alarm_sound"
+        app:layout_constraintStart_toEndOf="@id/text_setting"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:entries="@array/alarm_sound"
+        android:layout_marginRight="42dp" />
+
+    <Button
+        android:id="@+id/button_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/primary_color"
-        app:layout_constraintTop_toBottomOf="@id/text_setting"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_background"
+        android:text="UPDATE"
+        app:layout_constraintTop_toBottomOf="@id/text_alarm_sound"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/text_alarm_sound"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="42dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

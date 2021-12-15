@@ -9,6 +9,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.koekata.models.UserRepository;
+
+import javax.inject.Inject;
+
 public class PomodoroViewModel extends ViewModel {
     private MediatorLiveData<String> mStatus;
     private MediatorLiveData<Long> mCountDownTimeInMillis;
@@ -21,7 +25,12 @@ public class PomodoroViewModel extends ViewModel {
     private int mCountPomodoro;
     private CountDownTimer mCountDownTimer;
 
-    public PomodoroViewModel() {
+    UserRepository model;
+
+    @Inject
+    public PomodoroViewModel(UserRepository repository) {
+        model = repository;
+
         mStatus = new MediatorLiveData<>();
         mCountDownTimeInMillis = new MediatorLiveData<>();
         mTimeLeftInMillis = new MediatorLiveData<>();
@@ -56,20 +65,20 @@ public class PomodoroViewModel extends ViewModel {
         cancelCountDown();
         long totalTime;
         if(mStatus.getValue().toString().equals(STATIC_STATUS)){
-            mStatus.postValue(STUDY_STATUS);
+            mStatus.setValue(STUDY_STATUS);
             totalTime = mStudyTime.getValue();
             mCountDownTimeInMillis.setValue(totalTime);
             mTimeLeftInMillis.setValue(totalTime);
             startCountDown();
         }
         else if(mStatus.getValue().toString().equals(STUDY_STATUS)){
-            mStatus.postValue(STATIC_STATUS);
+            mStatus.setValue(STATIC_STATUS);
             totalTime = mStudyTime.getValue();
             mCountDownTimeInMillis.setValue(totalTime);
             mTimeLeftInMillis.setValue(totalTime);
         }
         else if(mStatus.getValue().toString().equals(DONE_STATUS)){
-            mStatus.postValue(RELAX_STATUS);
+            mStatus.setValue(RELAX_STATUS);
             if(mCountPomodoro != 4){
                 totalTime = mShortRelaxTime.getValue();
             }
@@ -81,7 +90,7 @@ public class PomodoroViewModel extends ViewModel {
             startCountDown();
         }
         else{
-            mStatus.postValue(STATIC_STATUS);
+            mStatus.setValue(STATIC_STATUS);
             totalTime = mStudyTime.getValue();
             mCountDownTimeInMillis.setValue(totalTime);
             mTimeLeftInMillis.setValue(totalTime);
@@ -90,10 +99,11 @@ public class PomodoroViewModel extends ViewModel {
 
     void autoUpdateStatus(){
         if(mStatus.getValue().toString().equals(STUDY_STATUS)){
-            mStatus.postValue(DONE_STATUS);
+            mStatus.setValue(DONE_STATUS);
+            model.addPomodoro(System.currentTimeMillis());
         }
         else if(mStatus.getValue().toString().equals(RELAX_STATUS)){
-            mStatus.postValue(STATIC_STATUS);
+            mStatus.setValue(STATIC_STATUS);
             mCountPomodoro = mCountPomodoro % 4 + 1;
         }
         else{

@@ -2,14 +2,21 @@ package com.example.koekata.ui.main.Pomodoro;
 
 import static com.example.koekata.utils.Constants.*;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,10 +29,15 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.example.koekata.R;
 import com.example.koekata.databinding.FragmentPomodoroBinding;
+import com.example.koekata.viewmodelprovider.ViewModelProviderFactory;
 
 import java.util.Locale;
 
-public class PomodoroFragment extends Fragment {
+import javax.inject.Inject;
+
+import dagger.android.support.DaggerFragment;
+
+public class PomodoroFragment extends DaggerFragment {
 
     private PomodoroViewModel pomodoroViewModel;
     private FragmentPomodoroBinding binding;
@@ -35,15 +47,21 @@ public class PomodoroFragment extends Fragment {
     private TextView textStatus;
     private TextView textTime;
     private Button btnPomodoro;
+    private ImageButton btnEdit;
 
     private long countDownTime;
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
 
+    Spinner studySpinner, shortRelaxSpinner, longRelaxSpinner, soundAlarm;
+
+    @Inject
+    ViewModelProviderFactory providerFactory;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         pomodoroViewModel =
-                new ViewModelProvider(this).get(PomodoroViewModel.class);
+                new ViewModelProvider(this, providerFactory).get(PomodoroViewModel.class);
 
         binding = FragmentPomodoroBinding.inflate(inflater, container, false);
 
@@ -51,23 +69,58 @@ public class PomodoroFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        progressBar = view.findViewById(R.id.progress_bar);
-        textStatus = view.findViewById(R.id.text_status);
-        textTime = view.findViewById(R.id.text_time);
-        img = view.findViewById(R.id.image_view_progress);
-        btnPomodoro = view.findViewById(R.id.button_pomodoro);
-        setOnUpdateStatus(view);
+    public void onViewCreated(@NonNull View pomodoroView, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(pomodoroView, savedInstanceState);
+        progressBar = pomodoroView.findViewById(R.id.progress_bar);
+        textStatus = pomodoroView.findViewById(R.id.text_status);
+        textTime = pomodoroView.findViewById(R.id.text_time);
+        img = pomodoroView.findViewById(R.id.image_view_progress);
+        btnPomodoro = pomodoroView.findViewById(R.id.button_pomodoro);
+        btnEdit = pomodoroView.findViewById(R.id.button_edit);
+
+        studySpinner = pomodoroView.findViewById(R.id.spinner_study);
+        shortRelaxSpinner = pomodoroView.findViewById(R.id.spin)
+
+
+        setOnUpdateStatus(pomodoroView);
         setOnNewCountDown();
         setOnUpdateCountDown();
 
         btnPomodoro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 pomodoroViewModel.clickUpdateStatus();
             }
         });
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog editDialog = new Dialog(pomodoroView.getContext());
+                editDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                editDialog.setContentView(R.layout.dialog_pomodoro_setting);
+
+                Window window = editDialog.getWindow();
+                if(window == null){
+                    return;
+                }
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                editDialog.setCancelable(false);
+
+                editDialog.findViewById(R.id.button_update).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        editDialog.dismiss();
+                    }
+                });
+
+                editDialog.show();
+
+            }
+        });
+
     }
 
     private void setOnUpdateStatus(View view) {
