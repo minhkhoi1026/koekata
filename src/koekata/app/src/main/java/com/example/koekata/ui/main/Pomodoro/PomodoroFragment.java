@@ -88,11 +88,11 @@ public class PomodoroFragment extends DaggerFragment {
         setOnUpdateStatus(pomodoroView);
         setOnNewCountDown();
         setOnUpdateCountDown();
+        setOnUpdateSetting();
 
         btnPomodoro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 pomodoroViewModel.clickUpdateStatus();
             }
         });
@@ -115,9 +115,9 @@ public class PomodoroFragment extends DaggerFragment {
                 editDialog.findViewById(R.id.button_update).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        studyTime = Long.parseLong(studySpinner.getSelectedItem().toString());
-                        shortRelaxTime = Long.parseLong(shortRelaxSpinner.getSelectedItem().toString());
-                        longRelaxTime = Long.parseLong(longRelaxSpinner.getSelectedItem().toString());
+                        studyTime = Long.parseLong(studySpinner.getSelectedItem().toString()) * 1000;
+                        shortRelaxTime = Long.parseLong(shortRelaxSpinner.getSelectedItem().toString()) * 1000;
+                        longRelaxTime = Long.parseLong(longRelaxSpinner.getSelectedItem().toString()) * 1000;
                         pomodoroViewModel.changeSettingTime(studyTime, shortRelaxTime, longRelaxTime);
                         editDialog.dismiss();
                     }
@@ -228,7 +228,6 @@ public class PomodoroFragment extends DaggerFragment {
                 textTime.setText(timeFormatted);
             }
         });
-
     }
 
     private void setOnUpdateSetting(){
@@ -238,10 +237,11 @@ public class PomodoroFragment extends DaggerFragment {
         liveSettingTime.observe(getViewLifecycleOwner(), new Observer<HashMap<String, Long>>() {
             @Override
             public void onChanged(HashMap<String, Long> settingTimeHashMap) {
-                studyTime = Long.parseLong(settingTimeHashMap.get(STUDY_TIME).toString());
-                shortRelaxTime = Long.parseLong(settingTimeHashMap.get(SHORT_RELAX_TIME).toString());
-                longRelaxTime = Long.parseLong(settingTimeHashMap.get(LONG_RELAX_TIME).toString());
-
+                if (settingTimeHashMap != null) {
+                    studyTime = settingTimeHashMap.get(STUDY_TIME);
+                    shortRelaxTime = settingTimeHashMap.get(SHORT_RELAX_TIME);
+                    longRelaxTime = settingTimeHashMap.get(LONG_RELAX_TIME);
+                }
             }
         });
     }
