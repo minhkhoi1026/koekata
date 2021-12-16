@@ -41,6 +41,7 @@
         android:layout_width="@dimen/spinner_width"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/text_study_time"
+        app:layout_constraintBottom_toBottomOf="@id/text_study_time"
         app:layout_constraintEnd_toEndOf="parent"
         android:entries="@array/study_time"
         android:layout_marginRight="22dp" />
@@ -63,6 +64,7 @@
         android:layout_width="@dimen/spinner_width"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/text_short_relax"
+        app:layout_constraintBottom_toBottomOf="@id/text_short_relax"
         app:layout_constraintEnd_toEndOf="parent"
         android:entries="@array/short_relax_time"
         android:layout_marginRight="22dp" />
@@ -84,11 +86,12 @@
         android:layout_width="@dimen/spinner_width"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/text_long_relax"
+        app:layout_constraintBottom_toBottomOf="@id/text_long_relax"
         app:layout_constraintEnd_toEndOf="parent"
         android:entries="@array/long_relax_time"
         android:layout_marginRight="22dp" />
 
-
+    <!--
     <TextView
         android:id="@+id/text_alarm_sound"
         android:layout_width="wrap_content"
@@ -106,10 +109,12 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/text_alarm_sound"
+        app:layout_constraintBottom_toBottomOf="@id/text_alarm_sound"
         app:layout_constraintEnd_toEndOf="parent"
         android:entries="@array/alarm_sound"
         android:layout_marginRight="22dp" />
 
+    -->
     <Button
         android:id="@+id/button_update"
         android:layout_width="wrap_content"
@@ -117,7 +122,7 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/button_background"
         android:text="UPDATE"
-        app:layout_constraintTop_toBottomOf="@id/text_alarm_sound"
+        app:layout_constraintTop_toBottomOf="@id/spinner_long_relax"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

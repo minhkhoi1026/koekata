@@ -116,6 +116,7 @@ public class PomodoroViewModel extends ViewModel {
     }
 
     public void autoUpdateStatus(){
+        cancelCountDown();
         if(mStatus.getValue().toString().equals(STUDY_STATUS)){
             mStatus.setValue(DONE_STATUS);
             mCountPomodoro = mCountPomodoro % 4 + 1;
@@ -123,6 +124,7 @@ public class PomodoroViewModel extends ViewModel {
         }
         else if(mStatus.getValue().toString().equals(RELAX_STATUS)){
             mStatus.setValue(STATIC_STATUS);
+            mTimeLeftInMillis.setValue(settingTime.getValue().get(STUDY_TIME));
         }
         else{
             return;
@@ -133,11 +135,11 @@ public class PomodoroViewModel extends ViewModel {
         mCountDownTimer = new CountDownTimer(mCountDownTimeInMillis.getValue(), 1000) {
             @Override
             public void onTick(long milliUntileEnd) {
-                mTimeLeftInMillis.postValue(milliUntileEnd);
+                mTimeLeftInMillis.setValue(milliUntileEnd);
             }
             @Override
             public void onFinish() {
-                mTimeLeftInMillis.postValue(new Long(0));
+                mTimeLeftInMillis.setValue(new Long(0));
                 autoUpdateStatus();
             }
         }.start();

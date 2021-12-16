@@ -112,6 +112,17 @@ public class PomodoroFragment extends DaggerFragment {
                 window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 editDialog.setCancelable(false);
 
+                studySpinner = editDialog.findViewById(R.id.spinner_study);
+                shortRelaxSpinner = editDialog.findViewById(R.id.spinner_short_relax);
+                longRelaxSpinner = editDialog.findViewById(R.id.spinner_long_relax);
+                //soundAlarmSpinner = editDialog.findViewById(R.id.spinner_alarm_sound);
+
+                ArrayAdapter studyAdapter = setStudySpinnerSelect(editDialog);
+                ArrayAdapter shortRelaxAdapter = setShortRelaxSelect(editDialog);
+                ArrayAdapter longRelaxAdapter = setLongRelaxSelect(editDialog);
+
+                updateSpinner(studyAdapter, shortRelaxAdapter, longRelaxAdapter);
+
                 editDialog.findViewById(R.id.button_update).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -124,20 +135,22 @@ public class PomodoroFragment extends DaggerFragment {
                 });
 
                 editDialog.show();
-
-                studySpinner = editDialog.findViewById(R.id.spinner_study);
-                shortRelaxSpinner = editDialog.findViewById(R.id.spinner_short_relax);
-                longRelaxSpinner = editDialog.findViewById(R.id.spinner_long_relax);
-                soundAlarmSpinner = editDialog.findViewById(R.id.spinner_alarm_sound);
-
-                setStudySpinnerSelect(editDialog);
-                setShortRelaxSelect(editDialog);
-                setLongRelaxSelect(editDialog);
             }
         });
     }
 
-    private void setStudySpinnerSelect(@NonNull Dialog diaglog) {
+    private void updateSpinner(ArrayAdapter studyAdapter, ArrayAdapter shortRelaxAdapter,
+                               ArrayAdapter longRelaxAdapter) {
+        int pos = studyAdapter.getPosition(String.valueOf(studyTime/1000));
+        studySpinner.setSelection(pos);
+        pos = shortRelaxAdapter.getPosition(String.valueOf(shortRelaxTime/1000));
+        shortRelaxSpinner.setSelection(pos);
+        pos = longRelaxAdapter.getPosition(String.valueOf(longRelaxTime/1000));
+        longRelaxSpinner.setSelection(pos);
+    }
+
+
+    private ArrayAdapter setStudySpinnerSelect(@NonNull Dialog diaglog) {
         ArrayAdapter studyAdapter=ArrayAdapter.createFromResource(
                 diaglog.getContext(),
                 R.array.study_time,
@@ -145,9 +158,11 @@ public class PomodoroFragment extends DaggerFragment {
                 );
         studyAdapter.setDropDownViewResource(R.layout.custom_dropdown_spiner);
         studySpinner.setAdapter(studyAdapter);
+        return studyAdapter;
+
     }
 
-    private void setShortRelaxSelect(@NonNull Dialog dialog){
+    private ArrayAdapter setShortRelaxSelect(@NonNull Dialog dialog){
         ArrayAdapter shortRelaxAdapter=ArrayAdapter.createFromResource(
                 dialog.getContext(),
                 R.array.short_relax_time,
@@ -155,9 +170,10 @@ public class PomodoroFragment extends DaggerFragment {
         );
         shortRelaxAdapter.setDropDownViewResource(R.layout.custom_dropdown_spiner);
         shortRelaxSpinner.setAdapter(shortRelaxAdapter);
+        return shortRelaxAdapter;
     }
 
-    private void setLongRelaxSelect(@NonNull Dialog dialog){
+    private ArrayAdapter setLongRelaxSelect(@NonNull Dialog dialog){
         ArrayAdapter longRelaxAdapter=ArrayAdapter.createFromResource(
                 dialog.getContext(),
                 R.array.short_relax_time,
@@ -165,6 +181,7 @@ public class PomodoroFragment extends DaggerFragment {
         );
         longRelaxAdapter.setDropDownViewResource(R.layout.custom_dropdown_spiner);
         longRelaxSpinner.setAdapter(longRelaxAdapter);
+        return longRelaxAdapter;
     }
 
     private void setOnUpdateStatus(View view) {
@@ -207,7 +224,6 @@ public class PomodoroFragment extends DaggerFragment {
         liveCountDownTimeInMillis.observe(getViewLifecycleOwner(), new Observer<Long>() {
             @Override
             public void onChanged(Long totalTime) {
-                    timeLeftInMillis = totalTime;
                     countDownTime = totalTime;
             }
         });
@@ -224,8 +240,11 @@ public class PomodoroFragment extends DaggerFragment {
                 int seconds = (int)(timeLeft /1000)%60;
 
                 String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-                progressBar.setProgress((int)(100 - (timeLeft*1.0/countDownTime)*100));
+                progressBar.setProgress(100 - (int)Math.round(timeLeft*1.0/countDownTime*100));
                 textTime.setText(timeFormatted);
+                if(seconds==0){
+                    progressBar.setProgress(100);
+                }
             }
         });
     }
@@ -249,7 +268,12 @@ public class PomodoroFragment extends DaggerFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        pomodoroViewModel.cancelCountDown();
         binding = null;
+
+        pomodoroViewModel.cancelCountDown();
+        textStatus.setText(STATIC_STATUS);
+        progressBar.setProgress(100);
+        img.setImageResource(R.drawable.ic_pomodoro_start);
+        btnPomodoro.setText(STATIC_BUTTON);
     }
 }
