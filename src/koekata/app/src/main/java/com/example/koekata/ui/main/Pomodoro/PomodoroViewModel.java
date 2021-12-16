@@ -3,6 +3,7 @@ package com.example.koekata.ui.main.Pomodoro;
 import static com.example.koekata.utils.Constants.*;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LiveData;
@@ -23,15 +24,9 @@ public class PomodoroViewModel extends ViewModel {
     private MediatorLiveData<Long> mCountDownTimeInMillis;
     private MediatorLiveData<Long> mTimeLeftInMillis;
 
-    public MediatorLiveData<HashMap<String, Long>> getSettingObserver() {
-        return settingObserver;
-    }
 
-    private MediatorLiveData<HashMap<String, Long>> settingObserver;
-
-    private long mStudyTime;
-    private long mShortRelaxTime;
-    private long mLongRelaxTime;
+    private MediatorLiveData<Boolean> settingObserver;
+    private MediatorLiveData<HashMap<String, Long>> settingTime;
 
     private int mCountPomodoro;
     private CountDownTimer mCountDownTimer;
@@ -44,6 +39,7 @@ public class PomodoroViewModel extends ViewModel {
         mCountDownTimeInMillis = new MediatorLiveData<>();
         mTimeLeftInMillis = new MediatorLiveData<>();
         settingObserver = new MediatorLiveData<>();
+        settingTime = new MediatorLiveData<>();
         mStatus.setValue(STATIC_STATUS);
         mCountPomodoro = 0;
 
@@ -64,23 +60,37 @@ public class PomodoroViewModel extends ViewModel {
         return mTimeLeftInMillis;
     }
 
-    private void setInitSetting(){
-        mCountDownTimeInMillis.setValue(DEFAULT_STUDY_TIME);
+    public MediatorLiveData<HashMap<String, Long>> getSettingTime() {
+        return settingTime;
+    }
 
+
+    private void setInitSetting(){
         MediatorLiveData<HashMap<String, Long>> liveSettingTime = model.getPomodoroSettingsLiveData();
         settingObserver.addSource(liveSettingTime, new Observer<HashMap<String, Long>>() {
             @Override
             public void onChanged(HashMap<String, Long> settingTimeHashMap) {
+                Log.d("changeTag", "This is change");
                 if(settingTimeHashMap == null){
                     model.setPomodoroTime(DEFAULT_STUDY_TIME, DEFAULT_SHORT_RELAX_TIME, DEFAULT_LONG_RELAX_TIME);
                 }
                 else{
-                    mStudyTime = settingTimeHashMap.get(STUDY_TIME);
-                    mShortRelaxTime = settingTimeHashMap.get(SHORT_RELAX_TIME);
-                    mLongRelaxTime = settingTimeHashMap.get(LONG_RELAX_TIME);
+                    settingTime.setValue(settingTimeHashMap);
                 }
             }
         });
+
+        if(model.getPomodoroSettingsLiveData().getValue() == null){
+            model.setPomodoroTime(DEFAULT_STUDY_TIME, DEFAULT_SHORT_RELAX_TIME, DEFAULT_LONG_RELAX_TIME);
+            Log.d("nullTag", "Null model");
+        }
+        settingTime.setValue(model.getPomodoroSettingsLiveData().getValue());
+        if(settingTime.getValue() == null){
+            Log.d("nullTag", "Null hash map");
+        }
+        mTimeLeftInMillis.setValue(settingTime.getValue().get(STUDY_TIME));
+
+
     }
 
     public void clickUpdateStatus(){
@@ -88,24 +98,24 @@ public class PomodoroViewModel extends ViewModel {
         long totalTime;
         if(mStatus.getValue().toString().equals(STATIC_STATUS)){
             mStatus.setValue(STUDY_STATUS);
-            totalTime = mStudyTime;
+            totalTime = settingTime.getValue().get(STUDY_TIME);
             mCountDownTimeInMillis.setValue(totalTime);
             mTimeLeftInMillis.setValue(totalTime);
             startCountDown();
         }
         else if(mStatus.getValue().toString().equals(STUDY_STATUS)){
             mStatus.setValue(STATIC_STATUS);
-            totalTime = mStudyTime;
+            totalTime = settingTime.getValue().get(STUDY_TIME);
             mCountDownTimeInMillis.setValue(totalTime);
             mTimeLeftInMillis.setValue(totalTime);
         }
         else if(mStatus.getValue().toString().equals(DONE_STATUS)){
             mStatus.setValue(RELAX_STATUS);
             if(mCountPomodoro != 4){
-                totalTime = mShortRelaxTime;
+                totalTime = settingTime.getValue().get(SHORT_RELAX_TIME);
             }
             else{
-                totalTime = mLongRelaxTime;
+                totalTime = settingTime.getValue().get(LONG_RELAX_TIME);
             }
             mCountDownTimeInMillis.setValue(totalTime);
             mTimeLeftInMillis.setValue(totalTime);
@@ -113,7 +123,7 @@ public class PomodoroViewModel extends ViewModel {
         }
         else{
             mStatus.setValue(STATIC_STATUS);
-            totalTime = mStudyTime;
+            totalTime = settingTime.getValue().get(STUDY_TIME);
             mCountDownTimeInMillis.setValue(totalTime);
             mTimeLeftInMillis.setValue(totalTime);
         }
@@ -122,11 +132,11 @@ public class PomodoroViewModel extends ViewModel {
     public void autoUpdateStatus(){
         if(mStatus.getValue().toString().equals(STUDY_STATUS)){
             mStatus.setValue(DONE_STATUS);
+            mCountPomodoro = mCountPomodoro % 4 + 1;
             model.addPomodoro(System.currentTimeMillis());
         }
         else if(mStatus.getValue().toString().equals(RELAX_STATUS)){
             mStatus.setValue(STATIC_STATUS);
-            mCountPomodoro = mCountPomodoro % 4 + 1;
         }
         else{
             return;

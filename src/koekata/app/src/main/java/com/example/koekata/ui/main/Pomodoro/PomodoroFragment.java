@@ -33,6 +33,7 @@ import com.example.koekata.R;
 import com.example.koekata.databinding.FragmentPomodoroBinding;
 import com.example.koekata.viewmodelprovider.ViewModelProviderFactory;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -56,6 +57,10 @@ public class PomodoroFragment extends DaggerFragment {
     private long timeLeftInMillis;
 
     Spinner studySpinner, shortRelaxSpinner, longRelaxSpinner, soundAlarmSpinner;
+
+    private long studyTime;
+    private  long shortRelaxTime;
+    private long longRelaxTime;
 
     @Inject
     ViewModelProviderFactory providerFactory;
@@ -110,9 +115,9 @@ public class PomodoroFragment extends DaggerFragment {
                 editDialog.findViewById(R.id.button_update).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        long studyTime = Long.parseLong(studySpinner.getSelectedItem().toString());
-                        long shortRelaxTime = Long.parseLong(shortRelaxSpinner.getSelectedItem().toString());
-                        long longRelaxTime = Long.parseLong(longRelaxSpinner.getSelectedItem().toString());
+                        studyTime = Long.parseLong(studySpinner.getSelectedItem().toString());
+                        shortRelaxTime = Long.parseLong(shortRelaxSpinner.getSelectedItem().toString());
+                        longRelaxTime = Long.parseLong(longRelaxSpinner.getSelectedItem().toString());
                         pomodoroViewModel.changeSettingTime(studyTime, shortRelaxTime, longRelaxTime);
                         editDialog.dismiss();
                     }
@@ -224,6 +229,21 @@ public class PomodoroFragment extends DaggerFragment {
             }
         });
 
+    }
+
+    private void setOnUpdateSetting(){
+        LiveData<HashMap<String, Long>> liveSettingTime = pomodoroViewModel.getSettingTime();
+        liveSettingTime.removeObservers(getViewLifecycleOwner());
+
+        liveSettingTime.observe(getViewLifecycleOwner(), new Observer<HashMap<String, Long>>() {
+            @Override
+            public void onChanged(HashMap<String, Long> settingTimeHashMap) {
+                studyTime = Long.parseLong(settingTimeHashMap.get(STUDY_TIME).toString());
+                shortRelaxTime = Long.parseLong(settingTimeHashMap.get(SHORT_RELAX_TIME).toString());
+                longRelaxTime = Long.parseLong(settingTimeHashMap.get(LONG_RELAX_TIME).toString());
+
+            }
+        });
     }
 
     @Override
