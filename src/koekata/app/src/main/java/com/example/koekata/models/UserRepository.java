@@ -4,10 +4,15 @@ import static com.example.koekata.utils.Constants.*;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MediatorLiveData;
 
+import com.google.firebase.FirebaseError;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -57,7 +62,7 @@ public class UserRepository {
         pomodorosRef.push().setValue(pomodoro);
     }
 
-    public void setPomodoroTime(Long study, Long shortRelax, long longRelax) {
+    public void setPomodoroTime(Long study, Long shortRelax, Long longRelax) {
         HashMap<String, Long> settings = new HashMap<>();
         settings.put(STUDY_TIME, study);
         settings.put(SHORT_RELAX_TIME, shortRelax);
@@ -111,6 +116,7 @@ public class UserRepository {
         pomodoroSettingsRef = ref.child("pomodoros").child("setting");
         GenericTypeIndicator<HashMap<String, Long>> pomodoroSettingsType = new GenericTypeIndicator<HashMap<String, Long>>() {};
         bindRefToLiveData(pomodoroSettingsLiveData, pomodoroSettingsRef, pomodoroSettingsType);
+        validatePomodoroSettings();
 
         tasksRef = ref.child("tasks");
         GenericTypeIndicator<HashMap<String, UserTask>> tasksType = new GenericTypeIndicator<HashMap<String, UserTask>>() {};
@@ -133,6 +139,20 @@ public class UserRepository {
                 new Thread(() ->
                         mediatorLiveData.postValue(res.getValue(typeIndicator))).start();;
             }
+        });
+    }
+
+    private void validatePomodoroSettings() {
+        pomodoroSettingsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.getValue() == null) {
+                    setPomodoroTime(DEFAULT_STUDY_TIME, DEFAULT_SHORT_RELAX_TIME, DEFAULT_LONG_RELAX_TIME);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
         });
     }
 }
