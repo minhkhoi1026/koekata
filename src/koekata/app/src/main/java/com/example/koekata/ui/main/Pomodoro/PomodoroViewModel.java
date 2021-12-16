@@ -25,7 +25,6 @@ public class PomodoroViewModel extends ViewModel {
     private MediatorLiveData<Long> mTimeLeftInMillis;
 
 
-    private MediatorLiveData<Boolean> settingObserver;
     private MediatorLiveData<HashMap<String, Long>> settingTime;
 
     private int mCountPomodoro;
@@ -38,7 +37,6 @@ public class PomodoroViewModel extends ViewModel {
         mStatus = new MediatorLiveData<>();
         mCountDownTimeInMillis = new MediatorLiveData<>();
         mTimeLeftInMillis = new MediatorLiveData<>();
-        settingObserver = new MediatorLiveData<>();
         settingTime = new MediatorLiveData<>();
         mStatus.setValue(STATIC_STATUS);
         mCountPomodoro = 0;
@@ -67,30 +65,18 @@ public class PomodoroViewModel extends ViewModel {
 
     private void setInitSetting(){
         MediatorLiveData<HashMap<String, Long>> liveSettingTime = model.getPomodoroSettingsLiveData();
-        settingObserver.addSource(liveSettingTime, new Observer<HashMap<String, Long>>() {
+        settingTime.addSource(liveSettingTime, new Observer<HashMap<String, Long>>() {
             @Override
             public void onChanged(HashMap<String, Long> settingTimeHashMap) {
-                Log.d("changeTag", "This is change");
-                if(settingTimeHashMap == null){
-                    model.setPomodoroTime(DEFAULT_STUDY_TIME, DEFAULT_SHORT_RELAX_TIME, DEFAULT_LONG_RELAX_TIME);
-                }
-                else{
+                if (settingTimeHashMap != null) {
                     settingTime.setValue(settingTimeHashMap);
+
+                    if (mStatus.getValue().equals(STATIC_STATUS)) {
+                        mTimeLeftInMillis.setValue(settingTimeHashMap.get(STUDY_TIME));
+                    }
                 }
             }
         });
-
-        if(model.getPomodoroSettingsLiveData().getValue() == null){
-            model.setPomodoroTime(DEFAULT_STUDY_TIME, DEFAULT_SHORT_RELAX_TIME, DEFAULT_LONG_RELAX_TIME);
-            Log.d("nullTag", "Null model");
-        }
-        settingTime.setValue(model.getPomodoroSettingsLiveData().getValue());
-        if(settingTime.getValue() == null){
-            Log.d("nullTag", "Null hash map");
-        }
-        mTimeLeftInMillis.setValue(settingTime.getValue().get(STUDY_TIME));
-
-
     }
 
     public void clickUpdateStatus(){
