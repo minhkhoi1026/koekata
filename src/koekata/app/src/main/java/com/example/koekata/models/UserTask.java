@@ -17,4 +17,11 @@ public class UserTask {
         this.repeat = repeat;
         this.lastDone = lastDone;
     }
+
+    public UserTask(UserTask other) {
+        this.title = other.title;
+        this.start = other.start;
+        this.repeat = other.repeat;
+        this.lastDone = other.lastDone;
+    }
 }

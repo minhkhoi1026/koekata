@@ -15,4 +15,10 @@ public class UserEvent {
         this.description = description;
         this.date = date;
     }
+
+    public UserEvent(UserEvent other) {
+        this.title = other.title;
+        this.date = other.date;
+        this.description = other.description;
+    }
 }
