@@ -7,7 +7,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MediatorLiveData;
 
-import com.google.firebase.FirebaseError;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -98,8 +97,28 @@ public class UserRepository {
         eventsRef.child(id).setValue(newUserEvent);
     }
 
-    public void updateTaskHistory(String id, Long newHistory) {
-        taskHistoryRef.child(id).setValue(newHistory);
+    public void upTaskHistory(String id) {
+        taskHistoryRef.child(id).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Long nLastDone = task.getResult().getValue(Long.class);
+                if (nLastDone != null) {
+                    taskHistoryRef.child(id).setValue(nLastDone + 1);
+                } else {
+                    taskHistoryRef.child(id).setValue(1);
+                }
+            }
+        });
+    }
+
+    public void downTaskHistory(String id) {
+        taskHistoryRef.child(id).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Long nLastDone = task.getResult().getValue(Long.class);
+                if (nLastDone != null && nLastDone > 0) {
+                    taskHistoryRef.child(id).setValue(nLastDone - 1);
+                }
+            }
+        });
     }
 
     public UserRepository(DatabaseReference ref) {
@@ -137,7 +156,7 @@ public class UserRepository {
         mediatorLiveData.addSource(liveData, res -> {
             if (res != null) {
                 new Thread(() ->
-                        mediatorLiveData.postValue(res.getValue(typeIndicator))).start();;
+                        mediatorLiveData.postValue(res.getValue(typeIndicator))).start();
             }
         });
     }
@@ -150,7 +169,6 @@ public class UserRepository {
                     setPomodoroTime(DEFAULT_STUDY_TIME, DEFAULT_SHORT_RELAX_TIME, DEFAULT_LONG_RELAX_TIME);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }
         });

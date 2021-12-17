@@ -7,13 +7,11 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -212,7 +210,7 @@ public class PomodoroFragment extends DaggerFragment {
                     textStatus.setText(RELAX_STATUS);
                     progressBar.setProgress(0);
                     Glide.with(view).load(R.drawable.pomodoro_relax).into(img);
-                    btnPomodoro.setText(RELAX_BUTON);
+                    btnPomodoro.setText(RELAX_BUTTON);
                 }
             }
         });
