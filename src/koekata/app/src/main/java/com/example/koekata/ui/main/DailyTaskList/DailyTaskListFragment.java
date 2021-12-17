@@ -42,8 +42,8 @@ public class DailyTaskListFragment extends DaggerFragment {
     private void subscribeObservers() {
         viewModel = new ViewModelProvider(this, providerFactory)
                 .get(DailyTaskListViewModel.class);
-        viewModel.getDailyTasks().removeObservers(getViewLifecycleOwner());
-        viewModel.getDailyTasks().observe(getViewLifecycleOwner(), tasks -> {
+        viewModel.getDailyTasksLiveData().removeObservers(getViewLifecycleOwner());
+        viewModel.getDailyTasksLiveData().observe(getViewLifecycleOwner(), tasks -> {
             if (tasks != null) {
                 adapter.setTasks(tasks);
             }

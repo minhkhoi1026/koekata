@@ -27,7 +27,11 @@ public class DailyTaskListViewModel extends ViewModel {
         this.userRepository = userRepository;
     }
 
-    public LiveData<HashMap<String, UserDailyTask>> getDailyTasks() {
+    public LiveData<HashMap<String, UserTask>> getTasksLiveData() {
+        return userRepository.getTasksLiveData();
+    }
+
+    public LiveData<HashMap<String, UserDailyTask>> getDailyTasksLiveData() {
         MediatorLiveData<HashMap<String, UserDailyTask>> dailyTasksLiveData = new MediatorLiveData<>();
         dailyTasksLiveData.addSource(userRepository.getTasksLiveData(), tasks -> {
             HashMap<String, UserDailyTask> dailyTasks = new HashMap<>();
