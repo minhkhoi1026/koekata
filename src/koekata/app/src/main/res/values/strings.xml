@@ -11,6 +11,8 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="DailyTask">Daily Task</string>
+    <string name="textholder">TextHolder</string>
+    <string name="menu_pomodoro">Pomodoro</string>
 
     <string-array name="study_time">
         <item>15</item>

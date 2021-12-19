@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.koekata.R;
 import com.example.koekata.ui.main.MainActivity;
@@ -45,6 +46,7 @@ public class AuthActivity extends DaggerAppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_auth);
 
         isUpgrade = getIntent().getBooleanExtra("UPGRADE", false);

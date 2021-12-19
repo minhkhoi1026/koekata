@@ -268,6 +268,7 @@ public class PomodoroFragment extends DaggerFragment {
         super.onDestroyView();
         binding = null;
 
+        // Comment neu muon pomodoro chay ngam khi mo sang tab khac
         pomodoroViewModel.cancelCountDown();
         textStatus.setText(STATIC_STATUS);
         progressBar.setProgress(100);

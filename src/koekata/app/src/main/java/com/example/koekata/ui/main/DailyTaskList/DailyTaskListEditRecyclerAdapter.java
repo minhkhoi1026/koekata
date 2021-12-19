@@ -6,35 +6,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.koekata.R;
-import com.example.koekata.ui.main.DailyTaskList.DailyTaskListViewModel.UserDailyTask;
+import com.example.koekata.models.UserTask;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 
-public class DailyTaskListRecyclerAdapter
-        extends RecyclerView.Adapter<DailyTaskListRecyclerAdapter.TaskListViewHolder> {
+public class DailyTaskListEditRecyclerAdapter
+        extends RecyclerView.Adapter<DailyTaskListEditRecyclerAdapter.TaskListEditViewHolder> {
 
     private static final String TAG = "DailyTaskListRecyclerAdapter";
-    private final List<Map.Entry<String, UserDailyTask>> tasks = new ArrayList<>();
+    private final List<Map.Entry<String, UserTask>> tasks = new ArrayList<>();
     private OnItemClickListener listener;
 
     @NonNull
     @Override
-    public TaskListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TaskListEditViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.dailytasklist_task_item, parent, false);
-        return new TaskListViewHolder(view);
+                .inflate(R.layout.dailytasklist_task_edit_item, parent, false);
+        return new TaskListEditViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TaskListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TaskListEditViewHolder holder, int position) {
         holder.bind(tasks.get(position));
     }
 
@@ -43,19 +44,19 @@ public class DailyTaskListRecyclerAdapter
         return tasks.size();
     }
 
-    public void setTasks(Map<String, UserDailyTask> taskMaps){
+    public void setTasks(Map<String, UserTask> taskMaps){
         tasks.clear();
         tasks.addAll(taskMaps.entrySet());
         Log.d(TAG, tasks.size() + "");
         notifyDataSetChanged();
     }
 
-    public class TaskListViewHolder extends RecyclerView.ViewHolder{
-        CheckBox cb;
+    public class TaskListEditViewHolder extends RecyclerView.ViewHolder{
+        TextView tv;
 
-        public TaskListViewHolder(@NonNull View itemView) {
+        public TaskListEditViewHolder(@NonNull View itemView) {
             super(itemView);
-            cb = itemView.findViewById(R.id.cb_daily_task);
+            tv = itemView.findViewById(R.id.tv_task_title);
 
             itemView.setOnClickListener(view -> {
                 int position = getAdapterPosition();
@@ -65,14 +66,13 @@ public class DailyTaskListRecyclerAdapter
             });
         }
 
-        public void bind(Map.Entry<String, UserDailyTask> task) {
-            cb.setText(task.getValue().task.title);
-            cb.setChecked(task.getValue().isFinished);
+        public void bind(Map.Entry<String, UserTask> task) {
+            tv.setText(task.getValue().title);
         }
     }
 
     public interface OnItemClickListener {
-        void onItemClick(Map.Entry<String, UserDailyTask> task);
+        void onItemClick(Map.Entry<String, UserTask> task);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

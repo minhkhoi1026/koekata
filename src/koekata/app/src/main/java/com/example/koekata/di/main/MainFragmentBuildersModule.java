@@ -1,6 +1,7 @@
 package com.example.koekata.di.main;
 
 
+import com.example.koekata.ui.main.DailyTaskList.DailyTaskListEditFragment;
 import com.example.koekata.ui.main.DailyTaskList.DailyTaskListFragment;
 import com.example.koekata.ui.main.Home.HomeFragment;
 import com.example.koekata.ui.main.Pomodoro.PomodoroFragment;
@@ -16,6 +17,9 @@ public abstract class MainFragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract DailyTaskListFragment contributeDailyTaskListFragment();
+
+    @ContributesAndroidInjector
+    abstract DailyTaskListEditFragment contributeDailyTaskListEditFragment();
 
     @ContributesAndroidInjector
     abstract HomeFragment contributeHomeFragment();
