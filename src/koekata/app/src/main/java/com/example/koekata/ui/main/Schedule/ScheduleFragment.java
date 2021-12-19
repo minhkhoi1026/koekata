@@ -33,7 +33,7 @@ public class ScheduleFragment extends DaggerFragment {
         scheduleViewModel =
                 new ViewModelProvider(this, viewModelProviderFactory).get(ScheduleViewModel.class);
 
-        binding = FragmentScheduleBinding.inflate(inflater, container, false);
+        binding = FragmentScheduleBinding.inflate(inflater, container, false );
 
         return binding.getRoot();
     }

@@ -27,6 +27,6 @@
         android:id="@+id/nav_wakeup_time"
         android:name="com.example.koekata.ui.main.WakeupTime.WakeupTimeFragment"
         android:label="@string/menu_wakeup_time"
-        tools:layout="@layout/fragment_pomodoro" />
+        tools:layout="@layout/fragment_wakeuptime" />
 
 </navigation>
