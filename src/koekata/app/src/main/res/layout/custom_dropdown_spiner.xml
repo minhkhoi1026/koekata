@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     android:text="Test"
-    android:textColor="@color/black"
+    android:textColor="@color/primary_color"
     android:textSize="20sp">
 
 </TextView>

@@ -17,6 +17,7 @@
         android:backgroundTint="#0288D1"/>
 
     <Button
+        android:id="@+id/btn_task_edit"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:backgroundTint="#0288D1"

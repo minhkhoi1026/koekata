@@ -14,6 +14,14 @@
     <string name="textholder">TextHolder</string>
     <string name="menu_pomodoro">Pomodoro</string>
 
+    <string-array name="repeat_time">
+        <item>0</item>
+        <item>1</item>
+        <item>3</item>
+        <item>7</item>
+        <item>15</item>
+    </string-array>
+
     <string-array name="study_time">
         <item>15</item>
         <item>20</item>

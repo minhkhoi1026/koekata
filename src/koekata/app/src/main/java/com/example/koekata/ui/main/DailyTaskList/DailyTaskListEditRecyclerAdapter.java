@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -52,13 +53,15 @@ public class DailyTaskListEditRecyclerAdapter
     }
 
     public class TaskListEditViewHolder extends RecyclerView.ViewHolder{
+        Button btn;
         TextView tv;
 
         public TaskListEditViewHolder(@NonNull View itemView) {
             super(itemView);
+            btn = itemView.findViewById(R.id.btn_task_edit);
             tv = itemView.findViewById(R.id.tv_task_title);
 
-            itemView.setOnClickListener(view -> {
+            btn.setOnClickListener(view -> {
                 int position = getAdapterPosition();
                 if (listener != null && position != RecyclerView.NO_POSITION) {
                     listener.onItemClick(tasks.get(position));
