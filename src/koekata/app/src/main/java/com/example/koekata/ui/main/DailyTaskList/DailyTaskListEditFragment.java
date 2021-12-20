@@ -198,7 +198,8 @@ public class DailyTaskListEditFragment extends DaggerFragment {
         from.setText(triggerTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
         Spinner spinner = dialog.findViewById(R.id.sp_repeat);
-        int pos = spinnerAdapter.getPosition(dailyTask.getValue().repeat + "");
+        long repeat = dailyTask.getValue().repeat / MILLIS_PER_DAY;
+        int pos = spinnerAdapter.getPosition(Long.toString(repeat));
         spinner.setSelection(pos);
     }
 
