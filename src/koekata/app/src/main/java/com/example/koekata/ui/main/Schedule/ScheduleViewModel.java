@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.koekata.models.UserEvent;
 import com.example.koekata.models.UserRepository;
+import com.firebase.ui.auth.data.model.User;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -94,5 +95,10 @@ public class ScheduleViewModel extends ViewModel {
 
     public void updateEvent(String id, UserEvent newUserEvent) {
         userRepository.updateEvent(id, newUserEvent);
+    }
+
+    public void addEvent(String title, String desc, Long dateTimeMillis) {
+        UserEvent newUserEvent = new UserEvent(title, desc, dateTimeMillis);
+        userRepository.addEvent(newUserEvent);
     }
 }
