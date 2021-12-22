@@ -50,6 +50,22 @@
         <entry key="..\:/playground/Android/Dagger2/app/src/main/res/layout/nav_header_main.xml" value="0.259375" />
         <entry key="..\:/playground/Android/Dagger2/app/src/main/res/menu/activity_main_drawer.xml" value="0.259375" />
         <entry key="..\:/playground/Android/Dagger2/app/src/main/res/menu/main.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/drawable/hour_box.xml" value="0.2755208333333333" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/activity_main.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/app_bar_main.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/calendar_day_layout.xml" value="0.13385416666666666" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/content_main.xml" value="0.13385416666666666" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/dialog_add_event.xml" value="0.11666666666666667" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/dialog_addminiscreen.xml" value="0.1046875" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/dialog_pomodoro_setting.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/fragment_pomodoro.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/fragment_schedule.xml" value="0.13385416666666666" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/fragment_wakeuptime.xml" value="0.13385416666666666" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/nav_header_main.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/user_event_recycler_item.xml" value="0.2545289855072464" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/menu/activity_main_drawer.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/menu/main.xml" value="0.259375" />
       </map>
     </option>
   </component>
