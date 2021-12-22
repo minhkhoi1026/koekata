@@ -28,5 +28,21 @@
         android:name="com.example.koekata.ui.main.WakeupTime.WakeupTimeFragment"
         android:label="@string/menu_wakeup_time"
         tools:layout="@layout/fragment_wakeuptime" />
+  
+    <fragment
+        android:id="@+id/nav_dailytasklist"
+        android:name="com.example.koekata.ui.main.DailyTaskList.DailyTaskListFragment"
+        android:label="@string/DailyTask"
+        tools:layout="@layout/fragment_dailytasklist" >
+        <action
+            android:id="@+id/action_nav_dailytasklist_to_nav_dailytasklist_edit"
+            app:destination="@id/nav_dailytasklist_edit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_dailytasklist_edit"
+        android:name="com.example.koekata.ui.main.DailyTaskList.DailyTaskListEditFragment"
+        android:label="@string/DailyTask"
+        tools:layout="@layout/fragment_dailytasklist_edit" />
 
 </navigation>

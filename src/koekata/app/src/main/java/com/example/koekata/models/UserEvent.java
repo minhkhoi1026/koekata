@@ -21,11 +21,17 @@ public class UserEvent {
         this.date = date;
     }
 
+
     public boolean equals(UserEvent other) {
         Date thisDate = new Date(this.date);
         Date otherDate = new Date(other.date);
         return other.title.equals(title)
                 && other.description.equals(description)
                 && fmt.format(thisDate).equals(fmt.format(otherDate));
+
+    public UserEvent(UserEvent other) {
+        this.title = other.title;
+        this.date = other.date;
+        this.description = other.description;
     }
 }

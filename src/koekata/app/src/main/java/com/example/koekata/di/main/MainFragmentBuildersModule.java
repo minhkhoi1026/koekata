@@ -1,7 +1,10 @@
 package com.example.koekata.di.main;
 
-//import com.example.dagger2.ui.main.posts.PostsFragment;
-//import com.example.dagger2.ui.main.profile.ProfileFragment;
+
+import com.example.koekata.ui.main.DailyTaskList.DailyTaskListEditFragment;
+import com.example.koekata.ui.main.DailyTaskList.DailyTaskListFragment;
+import com.example.koekata.ui.main.Home.HomeFragment;
+import com.example.koekata.ui.main.Pomodoro.PomodoroFragment;
 
 import com.example.koekata.ui.main.Schedule.ScheduleFragment;
 import com.example.koekata.ui.main.WakeupTime.WakeupTimeFragment;
@@ -12,6 +15,7 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class MainFragmentBuildersModule {
 
+
 //    @ContributesAndroidInjector
 //    abstract ProfileFragment contributeProfileFragment();
 
@@ -20,4 +24,17 @@ public abstract class MainFragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract ScheduleFragment contributeScheduleFragment();
+
+    @ContributesAndroidInjector
+    abstract PomodoroFragment contributePomodoroFragment();
+
+    @ContributesAndroidInjector
+    abstract DailyTaskListFragment contributeDailyTaskListFragment();
+
+    @ContributesAndroidInjector
+    abstract DailyTaskListEditFragment contributeDailyTaskListEditFragment();
+
+    @ContributesAndroidInjector
+    abstract HomeFragment contributeHomeFragment();
+
 }
