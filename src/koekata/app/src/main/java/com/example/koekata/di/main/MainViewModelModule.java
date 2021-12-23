@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.koekata.di.app.ViewModelKey;
 import com.example.koekata.ui.main.Pomodoro.PomodoroViewModel;
+import com.example.koekata.ui.main.Statistic.StatisticViewModel;
 
 import dagger.Binds;
 import dagger.Module;
@@ -17,6 +18,11 @@ public abstract class MainViewModelModule {
     @IntoMap
     @ViewModelKey(PomodoroViewModel.class)
     public abstract ViewModel bindPomodoroViewModel(PomodoroViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(StatisticViewModel.class)
+    public abstract ViewModel bindStatisticViewModel(StatisticViewModel viewModel);
 //
 //    @Binds
 //    @IntoMap

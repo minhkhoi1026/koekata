@@ -59,7 +59,7 @@ public class PomodoroFragment extends DaggerFragment {
     Spinner studySpinner, shortRelaxSpinner, longRelaxSpinner, soundAlarmSpinner;
 
     private long studyTime;
-    private  long shortRelaxTime;
+    private long shortRelaxTime;
     private long longRelaxTime;
 
     @Inject

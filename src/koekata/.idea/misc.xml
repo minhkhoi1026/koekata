@@ -3,6 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/drawable/ic_back.xml" value="0.18958333333333333" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/activity_auth.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/app_bar_main.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/content_main.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/custom_dropdown_spiner.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/custom_spinner.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/dialog_addminiscreen.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/dialog_pomodoro_setting.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_home.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_pomodoro.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_slideshow.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_statistic.xml" value="0.144" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_statistic_daily.xml" value="0.1734375" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_statistic_pomodoro.xml" value="0.1734375" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_statistic_schedule.xml" value="0.1734375" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_wakeuptimecalculator.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/nav_header_main.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/tab_statistic.xml" value="0.1793478260869565" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/menu/activity_main_drawer.xml" value="0.13020833333333334" />
+        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/menu/main.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/drawable/circle.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/drawable/tab_back.xml" value="0.16822916666666668" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/drawable/tab_back_select.xml" value="0.16822916666666668" />
