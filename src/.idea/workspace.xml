@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f532383-55d7-4953-827f-7ac23151f503" name="Default Changelist" comment="" />
+    <list default="true" id="4f532383-55d7-4953-827f-7ac23151f503" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/koekata/app/src/main/java/com/example/koekata/di/main/MainViewModelModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/koekata/app/src/main/java/com/example/koekata/di/main/MainViewModelModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/koekata/app/src/main/java/com/example/koekata/models/UserEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/koekata/app/src/main/java/com/example/koekata/models/UserEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/koekata/app/src/main/java/com/example/koekata/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/koekata/app/src/main/java/com/example/koekata/utils/Constants.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

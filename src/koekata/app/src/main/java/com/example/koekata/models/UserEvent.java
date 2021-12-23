@@ -28,6 +28,7 @@ public class UserEvent {
         return other.title.equals(title)
                 && other.description.equals(description)
                 && fmt.format(thisDate).equals(fmt.format(otherDate));
+    }
 
     public UserEvent(UserEvent other) {
         this.title = other.title;
