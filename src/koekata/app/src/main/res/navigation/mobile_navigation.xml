@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_pomodoro"
         android:name="com.example.koekata.ui.main.Pomodoro.PomodoroFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_pomodoro"
         tools:layout="@layout/fragment_pomodoro" />
 
     <fragment
@@ -22,5 +22,32 @@
         android:name="com.example.koekata.ui.main.Statistic.StatisticFragment"
         android:label="Statistic"
         tools:layout="@layout/fragment_statistic" />
+    <fragment
+        android:id="@+id/nav_schedule"
+        android:name="com.example.koekata.ui.main.Schedule.ScheduleFragment"
+        android:label="@string/menu_schedule"
+        tools:layout="@layout/fragment_schedule" />
+
+    <fragment
+        android:id="@+id/nav_wakeup_time"
+        android:name="com.example.koekata.ui.main.WakeupTime.WakeupTimeFragment"
+        android:label="@string/menu_wakeup_time"
+        tools:layout="@layout/fragment_wakeuptime" />
+  
+    <fragment
+        android:id="@+id/nav_dailytasklist"
+        android:name="com.example.koekata.ui.main.DailyTaskList.DailyTaskListFragment"
+        android:label="@string/DailyTask"
+        tools:layout="@layout/fragment_dailytasklist" >
+        <action
+            android:id="@+id/action_nav_dailytasklist_to_nav_dailytasklist_edit"
+            app:destination="@id/nav_dailytasklist_edit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_dailytasklist_edit"
+        android:name="com.example.koekata.ui.main.DailyTaskList.DailyTaskListEditFragment"
+        android:label="@string/DailyTask"
+        tools:layout="@layout/fragment_dailytasklist_edit" />
 
 </navigation>

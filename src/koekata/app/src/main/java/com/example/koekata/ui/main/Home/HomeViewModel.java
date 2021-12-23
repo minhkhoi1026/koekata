@@ -4,17 +4,24 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.koekata.models.UserRepository;
+import com.firebase.ui.auth.data.model.User;
+
+import javax.inject.Inject;
+
 public class HomeViewModel extends ViewModel {
+    private final UserRepository userRepository;
 
-    private MutableLiveData<String> mText;
-
-    public HomeViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
-
+    @Inject
+    public HomeViewModel(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<Long> getHomeStatusLiveData() {
+        return userRepository.getHomeStatusLiveData();
+    }
+
+    public void updateHomeStatus(long value) {
+        userRepository.updateHomeStatus(value);
     }
 }

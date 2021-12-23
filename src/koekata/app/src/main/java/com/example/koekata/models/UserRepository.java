@@ -7,7 +7,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MediatorLiveData;
 
-import com.google.firebase.FirebaseError;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -98,8 +97,28 @@ public class UserRepository {
         eventsRef.child(id).setValue(newUserEvent);
     }
 
-    public void updateTaskHistory(String id, Long newHistory) {
-        taskHistoryRef.child(id).setValue(newHistory);
+    public void upTaskHistory(String id) {
+        taskHistoryRef.child(id).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Long nLastDone = task.getResult().getValue(Long.class);
+                if (nLastDone != null) {
+                    taskHistoryRef.child(id).setValue(nLastDone + 1);
+                } else {
+                    taskHistoryRef.child(id).setValue(1);
+                }
+            }
+        });
+    }
+
+    public void downTaskHistory(String id) {
+        taskHistoryRef.child(id).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Long nLastDone = task.getResult().getValue(Long.class);
+                if (nLastDone != null && nLastDone > 0) {
+                    taskHistoryRef.child(id).setValue(nLastDone - 1);
+                }
+            }
+        });
     }
 
     public UserRepository(DatabaseReference ref) {
@@ -107,37 +126,38 @@ public class UserRepository {
 
         homeStatusRef = ref.child("homeStatus");
         GenericTypeIndicator<Long> homeStatusType = new GenericTypeIndicator<Long>() {};
-        bindRefToLiveData(homeStatusLiveData, homeStatusRef, homeStatusType);
+        bindRefToLiveData(homeStatusLiveData, homeStatusRef, homeStatusType, 0L);
 
         pomodorosRef = ref.child("pomodoros").child("success");
         GenericTypeIndicator<HashMap<String, Long>> pomodorosType = new GenericTypeIndicator<HashMap<String, Long>>() {};
-        bindRefToLiveData(pomodorosLiveData, pomodorosRef, pomodorosType);
+        bindRefToLiveData(pomodorosLiveData, pomodorosRef, pomodorosType, new HashMap<>());
 
         pomodoroSettingsRef = ref.child("pomodoros").child("setting");
         GenericTypeIndicator<HashMap<String, Long>> pomodoroSettingsType = new GenericTypeIndicator<HashMap<String, Long>>() {};
-        bindRefToLiveData(pomodoroSettingsLiveData, pomodoroSettingsRef, pomodoroSettingsType);
+        bindRefToLiveData(pomodoroSettingsLiveData, pomodoroSettingsRef, pomodoroSettingsType, new HashMap<>());
         validatePomodoroSettings();
 
         tasksRef = ref.child("tasks");
         GenericTypeIndicator<HashMap<String, UserTask>> tasksType = new GenericTypeIndicator<HashMap<String, UserTask>>() {};
-        bindRefToLiveData(tasksLiveData, tasksRef, tasksType);
+        bindRefToLiveData(tasksLiveData, tasksRef, tasksType, new HashMap<>());
 
         eventsRef = ref.child("events");
         GenericTypeIndicator<HashMap<String, UserEvent>> eventsType = new GenericTypeIndicator<HashMap<String, UserEvent>>() {};
-        bindRefToLiveData(eventsLiveData, eventsRef, eventsType);
+        bindRefToLiveData(eventsLiveData, eventsRef, eventsType, new HashMap<>());
 
         taskHistoryRef = ref.child("taskHistory");
         GenericTypeIndicator<HashMap<String, Long>> taskHistoryType = new GenericTypeIndicator<HashMap<String, Long>>() {};
-        bindRefToLiveData(taskHistoryLiveData, taskHistoryRef, taskHistoryType);
+        bindRefToLiveData(taskHistoryLiveData, taskHistoryRef, taskHistoryType, new HashMap<>());
     }
 
     private <T> void bindRefToLiveData(MediatorLiveData<T> mediatorLiveData, DatabaseReference ref,
-                                       GenericTypeIndicator<T> typeIndicator) {
+                                       GenericTypeIndicator<T> typeIndicator, T defaultValue) {
         FirebaseQueryLiveData liveData = new FirebaseQueryLiveData(ref);
         mediatorLiveData.addSource(liveData, res -> {
             if (res != null) {
-                new Thread(() ->
-                        mediatorLiveData.postValue(res.getValue(typeIndicator))).start();;
+                new Thread(() -> mediatorLiveData.postValue(res.getValue(typeIndicator))).start();
+            } else {
+                mediatorLiveData.postValue(defaultValue);
             }
         });
     }
@@ -150,7 +170,6 @@ public class UserRepository {
                     setPomodoroTime(DEFAULT_STUDY_TIME, DEFAULT_SHORT_RELAX_TIME, DEFAULT_LONG_RELAX_TIME);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }
         });

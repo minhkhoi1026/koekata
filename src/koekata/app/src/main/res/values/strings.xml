@@ -8,8 +8,21 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_pomodoro">Pomodoro</string>
+    <string name="menu_wakeup_time">Wakeup Time</string>
+    <string name="menu_schedule">Schedule</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="DailyTask">Daily Task</string>
+    <string name="textholder">TextHolder</string>
+
+    <string-array name="repeat_time">
+        <item>0</item>
+        <item>1</item>
+        <item>3</item>
+        <item>7</item>
+        <item>15</item>
+    </string-array>
+
 
     <string-array name="study_time">
         <item>15</item>

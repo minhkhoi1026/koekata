@@ -13,70 +13,61 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.koekata.R;
-import com.example.koekata.databinding.FragmentHomeBinding;
+import com.example.koekata.viewmodelprovider.ViewModelProviderFactory;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class HomeFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.android.support.DaggerFragment;
+
+public class HomeFragment extends DaggerFragment {
+
+    @Inject
+    ViewModelProviderFactory providerFactory;
+    
     private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
-    private FloatingActionButton fab;
 
-    private LinearLayout llHomeDefault;
-    private LinearLayout llPomodoro;
-    private LinearLayout llPomodoroStatistic;
-    private LinearLayout llDailyTaskList;
-    private LinearLayout llDailyTaskListStatistic;
-    private LinearLayout llSchedule;
-    private LinearLayout llScheduleStatistic;
+    private List<HomeStatus> displayStatuses = new ArrayList<>();
 
+    private LinearLayout homeDefault;
+    private LinearLayout statusShow;
+    private Dialog dialog;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        llHomeDefault = root.findViewById(R.id.llHomeDefault);
-        llPomodoro = root.findViewById(R.id.llPomodoro);
-        llPomodoroStatistic = root.findViewById(R.id.llPomodoroStatistic);
-        llDailyTaskList = root.findViewById(R.id.llDailyTaskList);
-        llDailyTaskListStatistic = root.findViewById(R.id.llDailyTaskListStatistic);
-        llSchedule = root.findViewById(R.id.llSchedule);
-        llScheduleStatistic = root.findViewById(R.id.llScheduleStatistic);
-
-        fab = root.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openAddMiniScreenDialog();
-            }
-        });
-        return root;
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+        FloatingActionButton fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(v -> openAddMiniScreenDialog());
+
+        homeDefault = view.findViewById(R.id.llHomeDefault);
+        statusShow = view.findViewById(R.id.ll_status_show);
+        dialog = createNewDialog();
+
+        subscribeObservers(view);
     }
 
-    private void openAddMiniScreenDialog() {
-        final Dialog dialog = new Dialog(this.getContext());
+    private Dialog createNewDialog() {
+        Dialog dialog = new Dialog(this.getContext());
         dialog.setContentView(R.layout.dialog_addminiscreen);
 
         Window window = dialog.getWindow();
-
         if (window == null) {
-            return;
+            return null;
         }
 
         window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT,
@@ -86,80 +77,100 @@ public class HomeFragment extends Fragment {
         WindowManager.LayoutParams windowAttributes = window.getAttributes();
         windowAttributes.gravity = Gravity.CENTER;
         window.setAttributes(windowAttributes);
+        return dialog;
+    }
+
+    private void subscribeObservers(View view) {
+        homeViewModel = new ViewModelProvider(this, providerFactory).get(HomeViewModel.class);
+        homeViewModel.getHomeStatusLiveData().removeObservers(getViewLifecycleOwner());
+        homeViewModel.getHomeStatusLiveData().observe(getViewLifecycleOwner(), value -> {
+            displayStatuses = HomeStatus.unpackHomeStatus(value);
+            validateDefaultStatus();
+
+            hideAllStatuses();
+            showSelectedStatuses(view);
+
+            uncheckAllBoxes();
+            checkSelectedBoxes();
+        });
+    }
+
+    private void validateDefaultStatus() {
+        if (displayStatuses.isEmpty()) {
+            homeDefault.setVisibility(View.VISIBLE);
+        } else {
+            homeDefault.setVisibility(View.GONE);
+        }
+    }
+
+    private void hideAllStatuses() {
+        for(int index = 0; index < statusShow.getChildCount(); index++) {
+            View child = statusShow.getChildAt(index);
+            child.setVisibility(View.GONE);
+        }
+    }
+
+    private void showSelectedStatuses(View view) {
+        for (HomeStatus status: displayStatuses) {
+            LinearLayout ll = statusShow.findViewById(status.getLayoutId());
+            ll.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void uncheckAllBoxes() {
+        LinearLayout ll = dialog.findViewById(R.id.ll_status_select);
+        for(int index = 0; index < ll.getChildCount(); index++) {
+            View child = ll.getChildAt(index);
+
+            if (child instanceof CheckBox) {
+                ((CheckBox) child).setChecked(false);
+            }
+        }
+    }
+
+    private void checkSelectedBoxes() {
+        for (HomeStatus status: displayStatuses) {
+            CheckBox cb = dialog.findViewById(status.getCheckboxId());
+            cb.setChecked(true);
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    private void openAddMiniScreenDialog() {
+        if (dialog == null) {
+            dialog = createNewDialog();
+            return;
+        }
 
         dialog.show();
 
-        CheckBox cbPomodoro = dialog.findViewById(R.id.cbPomodoro);
-        CheckBox cbPomodoroStatistic = dialog.findViewById(R.id.cbPomodoroStatistic);
-        CheckBox cbDailyTaskList = dialog.findViewById(R.id.cbDailyTaskList);
-        CheckBox cbDailyTaskListStatistic = dialog.findViewById(R.id.cbDailyTaskListStatistic);
-        CheckBox cbSchedule = dialog.findViewById(R.id.cbSchedule);
-        CheckBox cbScheduleStatistic = dialog.findViewById(R.id.cbScheduleStatistic);
         Button btnUpdate = dialog.findViewById(R.id.btnUpdate);
-
-        if (llPomodoro.getVisibility() == View.VISIBLE)
-            cbPomodoro.setChecked(true);
-        if (llPomodoroStatistic.getVisibility() == View.VISIBLE)
-            cbPomodoroStatistic.setChecked(true);
-        if (llDailyTaskList.getVisibility() == View.VISIBLE)
-            cbDailyTaskList.setChecked(true);
-        if (llDailyTaskListStatistic.getVisibility() == View.VISIBLE)
-            cbDailyTaskListStatistic.setChecked(true);
-        if (llSchedule.getVisibility() == View.VISIBLE)
-            cbSchedule.setChecked(true);
-        if (llScheduleStatistic.getVisibility() == View.VISIBLE)
-            cbScheduleStatistic.setChecked(true);
-
-
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int count = 0;
-                if (cbPomodoro.isChecked()) {
-                    count+=1;
-                    llPomodoro.setVisibility(View.VISIBLE);
-                } else {
-                    llPomodoro.setVisibility(View.GONE);
-                }
-                if (cbPomodoroStatistic.isChecked()) {
-                    count+=1;
-                    llPomodoroStatistic.setVisibility(View.VISIBLE);
-                } else {
-                    llPomodoroStatistic.setVisibility(View.GONE);
-                }
-                if (cbDailyTaskList.isChecked()) {
-                    count+=1;
-                    llDailyTaskList.setVisibility(View.VISIBLE);
-                } else {
-                    llDailyTaskList.setVisibility(View.GONE);
-                }
-                if (cbDailyTaskListStatistic.isChecked()) {
-                    count+=1;
-                    llDailyTaskListStatistic.setVisibility(View.VISIBLE);
-                } else {
-                    llDailyTaskListStatistic.setVisibility(View.GONE);
-                }
-                if (cbSchedule.isChecked()) {
-                    count+=1;
-                    llSchedule.setVisibility(View.VISIBLE);
-                } else {
-                    llSchedule.setVisibility(View.GONE);
-                }
-                if (cbScheduleStatistic.isChecked()) {
-                    count+=1;
-                    llScheduleStatistic.setVisibility(View.VISIBLE);
-                } else {
-                    llScheduleStatistic.setVisibility(View.GONE);
-                }
-                if (count==0) {
-                    llHomeDefault.setVisibility(View.VISIBLE);
-                } else {
-                    llHomeDefault.setVisibility(View.GONE);
-                }
-                dialog.cancel();
-            }
+        btnUpdate.setOnClickListener(view -> {
+            long selectedStatus = getSelectedStatuses();
+            homeViewModel.updateHomeStatus(selectedStatus);
+            dialog.cancel();
         });
+    }
 
+    private long getSelectedStatuses() {
+        LinearLayout ll = dialog.findViewById(R.id.ll_status_select);
+        long value = 0L;
 
+        for(int index = 0; index < ll.getChildCount(); index++) {
+            View child = ll.getChildAt(index);
+
+            if (child instanceof CheckBox && ((CheckBox) child).isChecked()) {
+                int id = child.getId();
+                HomeStatus status = HomeStatus.findHomeStatusByCheckboxId(id);
+
+                if (status != null)
+                    value |= status.getValue();
+            }
+        }
+        return value;
     }
 }

@@ -9,7 +9,7 @@
             android:icon="@drawable/ic_menu_home"
             android:title="Home" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_pomodoro"
             android:icon="@drawable/ic_menu_pomodoro"
             android:title="Pomodoro" />
         <item
@@ -17,12 +17,12 @@
             android:icon="@drawable/ic_menu_dailytasklist"
             android:title="Daily-task-list" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_schedule"
             android:icon="@drawable/ic_menu_schedule"
             android:title="Schedule" />
         <item
-            android:id="@+id/nav_wakeupcalculator"
-            android:icon="@drawable/ic_menu_wakeupcalculator"
+            android:id="@+id/nav_wakeup_time"
+            android:icon="@drawable/ic_menu_wakeup_time"
             android:title="Wake up Calculator" />
         <item
             android:id="@+id/nav_statistic"
