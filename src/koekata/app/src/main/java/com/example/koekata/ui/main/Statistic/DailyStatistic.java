@@ -1,9 +1,12 @@
 package com.example.koekata.ui.main.Statistic;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,9 +20,14 @@ import javax.inject.Inject;
 
 import dagger.android.support.DaggerFragment;
 
-public class DailyStatistic extends DaggerFragment {
+public class DailyStatistic extends DaggerFragment implements View.OnClickListener{
     public StatisticViewModel statisticViewModel;
     //public FragmentStatisticBinding binding;
+    TextView btnPomodoro;
+    TextView btnDailyTaskList;
+    TextView btnSchedule;
+    TextView selectTab;
+    ColorStateList notSelectTextColor;
 
     @Inject
     ViewModelProviderFactory providerFactory;
@@ -44,5 +52,39 @@ public class DailyStatistic extends DaggerFragment {
     @Override
     public void onViewCreated(@NonNull View statisticView, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(statisticView, savedInstanceState);
+
+        btnPomodoro = statisticView.findViewById(R.id.item1);
+        btnDailyTaskList = statisticView.findViewById(R.id.item2);
+        btnSchedule = statisticView.findViewById(R.id.item3);
+        selectTab = statisticView.findViewById(R.id.select);
+        notSelectTextColor = btnSchedule.getTextColors();
+
+        btnPomodoro.setOnClickListener(this);
+        btnDailyTaskList .setOnClickListener(this);
+        btnSchedule.setOnClickListener(this);
+        selectTab = statisticView.findViewById(R.id.select);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.item1){
+            selectTab.animate().x(0).setDuration(100);
+            btnPomodoro.setTextColor(Color.WHITE);
+            btnDailyTaskList.setTextColor(notSelectTextColor);
+            btnSchedule.setTextColor(notSelectTextColor);
+        } else if (view.getId() == R.id.item2){
+            btnPomodoro.setTextColor(notSelectTextColor);
+            btnDailyTaskList.setTextColor(Color.WHITE);
+            btnSchedule.setTextColor(notSelectTextColor);
+            int size = btnDailyTaskList.getWidth();
+            selectTab.animate().x(size).setDuration(100);
+        } else if (view.getId() == R.id.item3){
+            btnPomodoro.setTextColor(notSelectTextColor);
+            btnSchedule.setTextColor(Color.WHITE);
+            btnDailyTaskList.setTextColor(notSelectTextColor);
+            int size = btnDailyTaskList.getWidth() * 2;
+            selectTab.animate().x(size).setDuration(100);
+        }
     }
 }
