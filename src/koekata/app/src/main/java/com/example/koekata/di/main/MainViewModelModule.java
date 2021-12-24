@@ -47,6 +47,8 @@ public abstract class MainViewModelModule {
 //    @IntoMap
 //    @ViewModelKey(PostsViewModel.class)
 //    public abstract ViewModel bindPostsViewModel(PostsViewModel viewModel);
+    @Binds
+    @IntoMap
     @ViewModelKey(DailyTaskListViewModel.class)
     public abstract ViewModel bindDailyTaskViewModel(DailyTaskListViewModel viewModel);
 
