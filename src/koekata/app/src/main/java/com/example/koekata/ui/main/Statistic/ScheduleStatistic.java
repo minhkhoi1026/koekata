@@ -1,17 +1,32 @@
 package com.example.koekata.ui.main.Statistic;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.anychart.chart.common.dataentry.DataEntry;
 import com.example.koekata.R;
 import com.example.koekata.viewmodelprovider.ViewModelProviderFactory;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -21,6 +36,19 @@ public class ScheduleStatistic extends DaggerFragment {
 
 
     public StatisticViewModel statisticViewModel;
+    private ImageButton back;
+    private ImageButton next;
+    private TextView monthYear;
+    private BarChart barChart;
+
+    private TextView titleStatistic;
+    private TextView dailyStatistic;
+    private TextView monthlyStatistic;
+    private TextView weeklyStatistic;
+    private TextView yearlyStatistic;
+    private TextView totalStatistic;
+    private List<DataEntry> data;
+    ArrayList<BarEntry> barEntryArrayList;
     //public FragmentStatisticBinding binding;
 
     @Inject
@@ -46,5 +74,113 @@ public class ScheduleStatistic extends DaggerFragment {
     @Override
     public void onViewCreated(@NonNull View statisticView, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(statisticView, savedInstanceState);
+
+        back = statisticView.findViewById(R.id.button_back);
+        next = statisticView.findViewById(R.id.button_next);
+        monthYear = statisticView.findViewById(R.id.text_date);
+        barChart = statisticView.findViewById(R.id.chart);
+        titleStatistic = statisticView.findViewById(R.id.text_title);
+        dailyStatistic = statisticView.findViewById(R.id.text_day_percent);
+        monthlyStatistic = statisticView.findViewById(R.id.text_month_percent);
+        yearlyStatistic = statisticView.findViewById(R.id.text_year_percent);
+        weeklyStatistic = statisticView.findViewById(R.id.text_week_percent);
+        totalStatistic = statisticView.findViewById(R.id.text_total_percent);
+
+        data = new ArrayList<>();
+        init();
+        showCurrentInfo();
+
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                statisticViewModel.changeBack();
+                statisticViewModel.initScheduleStatistic();
+            }
+        });
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                statisticViewModel.changeForward();
+                statisticViewModel.initScheduleStatistic();
+            }
+        });
+
+        statisticViewModel.getTotalScheduleCompleted().observe(getViewLifecycleOwner(), new Observer<ArrayList<Integer>>() {
+            @Override
+            public void onChanged(ArrayList<Integer> integers) {
+                dailyStatistic.setText(String.valueOf(integers.get(0)) + " time(s)");
+                weeklyStatistic.setText(String.valueOf(integers.get(1)) + " time(s)");
+                monthlyStatistic.setText(String.valueOf(integers.get(2)) + " time(s)");
+                yearlyStatistic.setText(String.valueOf(integers.get(3)) + " time(s)");
+                totalStatistic.setText(String.valueOf(integers.get(4)) + " time(s)");
+            }
+        });
+
+
+        statisticViewModel.getMonthYear().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                monthYear.setText(s);
+            }
+        });
+
+        statisticViewModel.getSchedulesStatistic().observe(getViewLifecycleOwner(), new Observer<ArrayList<Integer>>() {
+            @Override
+            public void onChanged(ArrayList<Integer> integers) {
+                drawChart(integers);
+            }
+        });
     }
+
+    private void drawChart(ArrayList<Integer> integers) {
+        barEntryArrayList = new ArrayList<>();
+        barEntryArrayList.clear();
+        ArrayList<String> labelName;
+        labelName = new ArrayList<>();
+
+        for (int i = 0; i < integers.size(); ++i) {
+            barEntryArrayList.add(new BarEntry(i, integers.get(i)));
+            labelName.add(String.valueOf(i+1));
+        }
+        BarDataSet barDataSet = new BarDataSet(barEntryArrayList, "Total Schedule Setting Times");
+        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        barDataSet.setValueTextColor(Color.BLACK);
+        //barDataSet.setValueTextSize(9f);
+
+        BarData barData = new BarData(barDataSet);
+
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labelName));
+
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setDrawAxisLine(false);
+        xAxis.setTextSize(9f);
+        xAxis.setLabelCount(labelName.size());
+
+
+        barChart.setBackgroundColor(Color.WHITE);
+        barChart.setData(barData);
+        //barChart.getDescription().setText("Demo");
+        barChart.invalidate();
+    }
+
+    private void init() {
+        statisticViewModel.initScheduleStatistic();
+    }
+
+    private void showCurrentInfo() {
+        //titleStatistic.setText(pomodoroStat);
+        statisticViewModel.countTotalScheduleCompleted();
+
+    }
+
+
+
+
 }

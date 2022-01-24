@@ -18,13 +18,13 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                return new DailyStatistic();
-            case 1:
                 return new PomodoroStatistic();
             case 2:
+                return new DailyStatistic();
+            case 1:
                 return new ScheduleStatistic();
             default:
-                return new DailyStatistic();
+                return new PomodoroStatistic();
         }
     }
 

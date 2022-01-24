@@ -23,8 +23,8 @@ import java.util.Map;
 import javax.inject.Inject;
 
 public class StatisticViewModel extends ViewModel {
-    private static long millisecPerDay = 86400000;
-    private static long millisecPerWeek = 86400000 * 7;
+    private static final long millisecPerDay = 86400000;
+    private static final long millisecPerWeek = 86400000 * 7;
 
     private UserRepository repository;
 
@@ -69,11 +69,11 @@ public class StatisticViewModel extends ViewModel {
         return schedulesStatistic;
     }
 
-    public MediatorLiveData<ArrayList<Double>> getTotalDailyTasksCompleted() {
+    public MediatorLiveData<ArrayList<Integer>> getTotalDailyTasksCompleted() {
         return totalDailyTasksCompleted;
     }
 
-    public MediatorLiveData<ArrayList<Double>> getDailyTasksStatistic() {
+    public MediatorLiveData<ArrayList<Integer>> getDailyTasksStatistic() {
         return dailyTasksStatistic;
     }
 
@@ -99,8 +99,8 @@ public class StatisticViewModel extends ViewModel {
         return dailyTaskDenStatistic;
     }
 
-    private MediatorLiveData<ArrayList<Double>> totalDailyTasksCompleted;
-    private MediatorLiveData<ArrayList<Double>> dailyTasksStatistic;
+    private MediatorLiveData<ArrayList<Integer>> totalDailyTasksCompleted;
+    private MediatorLiveData<ArrayList<Integer>> dailyTasksStatistic;
 
     @Inject
     public StatisticViewModel(UserRepository repo){
@@ -108,17 +108,21 @@ public class StatisticViewModel extends ViewModel {
         currentTime = new MediatorLiveData<>();
         currentTime.setValue(System.currentTimeMillis());
         pomodoroStatistic = new MediatorLiveData<ArrayList<Integer>>();
-        totalPomodoroCompletedPerDay = new MediatorLiveData<Integer>();
-        totalPomodoroCompletedPerWeek = new MediatorLiveData<Integer>();
+        totalPomodoroCompletedPerDay   = new MediatorLiveData<Integer>();
+        totalPomodoroCompletedPerWeek  = new MediatorLiveData<Integer>();
         totalPomodoroCompletedPerMonth = new MediatorLiveData<Integer>();
-        totalPomodoroCompletedPerYear = new MediatorLiveData<Integer>();
+        totalPomodoroCompletedPerYear  = new MediatorLiveData<Integer>();
         totalPomodoroCompleted = new MediatorLiveData<Integer>();
         currentMonth = new MediatorLiveData<Integer>();
-        currentYear = new MediatorLiveData<Integer>();
-        monthYear = new MediatorLiveData<String>();
+        currentYear  = new MediatorLiveData<Integer>();
+        monthYear    = new MediatorLiveData<String>();
 
         totalScheduleCompleted = new MediatorLiveData<>();
-        schedulesStatistic = new MediatorLiveData<>();
+        schedulesStatistic     = new MediatorLiveData<>();
+
+
+
+
         totalDailyTasksCompleted = new MediatorLiveData<>();
         dailyTasksStatistic = new MediatorLiveData<>();
         dailyTaskNumStatistic = new MediatorLiveData<>();
@@ -215,7 +219,7 @@ public class StatisticViewModel extends ViewModel {
             @Override
             public void onChanged(HashMap<String, Long> stringLongHashMap) {
                 long beginCurrentWeek = currentTime.getValue() - currentTime.getValue() % millisecPerWeek;
-                long endCurrentWeek = beginCurrentWeek + millisecPerDay - 1;
+                long endCurrentWeek = beginCurrentWeek + millisecPerWeek - 1;
                 int count = 0;
                 for (Long t : stringLongHashMap.values()) {
                     if (t<= endCurrentWeek && t>=beginCurrentWeek){
@@ -235,7 +239,7 @@ public class StatisticViewModel extends ViewModel {
                 long endCurrentMonth = getEndCurrentMonthMilisec();
                 int count = 0;
                 for (Long t : stringLongHashMap.values()) {
-                    if (t<= beginCurrentMonth && t>=endCurrentMonth){
+                    if (t>= beginCurrentMonth && t<=endCurrentMonth){
                         count++;
                     }
                 }
@@ -254,7 +258,7 @@ public class StatisticViewModel extends ViewModel {
                 long endCurrentYear = getEndCurrentYearMilisec();
                 int count = 0;
                 for (Long t : stringLongHashMap.values()) {
-                    if (t<= beginCurrentYear && t>=endCurrentYear){
+                    if (t>= beginCurrentYear && t<=endCurrentYear){
                         count++;
                     }
                 }
@@ -274,7 +278,7 @@ public class StatisticViewModel extends ViewModel {
                 long beginCurrentMonth = getBeginCurrentMonthMilisec();
                 long endCurrentMonth = getEndCurrentMonthMilisec();
                 long beginCurrentWeek = currentTime.getValue() - currentTime.getValue() % millisecPerWeek;
-                long endCurrentWeek = beginCurrentWeek + millisecPerDay - 1;
+                long endCurrentWeek = beginCurrentWeek + millisecPerWeek - 1;
                 ArrayList<Integer> temp = new ArrayList<>();
                 int countDay = 0, countWeek = 0, countMonth = 0, countYear = 0, total = 0;
                 for (UserEvent userEvent: stringUserEventHashMap.values())
@@ -315,17 +319,17 @@ public class StatisticViewModel extends ViewModel {
                 long beginCurrentMonth = getBeginCurrentMonthMilisec();
                 long endCurrentMonth = getEndCurrentMonthMilisec();
                 long beginCurrentWeek = currentTime.getValue() - currentTime.getValue() % millisecPerWeek;
-                long endCurrentWeek = beginCurrentWeek + millisecPerDay - 1;
+                long endCurrentWeek = beginCurrentWeek + millisecPerWeek - 1;
 
                 int countDay = 0, countWeek = 0, countMonth = 0, countYear = 0, total = 0;
                 for (String i : stringLongHashMap.keySet()) {
-                    if (Integer.parseInt(i) >=beginCurrentDay &&Integer.parseInt(i)<=endCurrentDay)
+                    if (Long.parseLong(i) >=beginCurrentDay && Long.parseLong(i)<=endCurrentDay)
                         countDay+=stringLongHashMap.get(i);
-                    if (Integer.parseInt(i) >=beginCurrentWeek &&Integer.parseInt(i)<=endCurrentWeek)
+                    if (Long.parseLong(i) >=beginCurrentWeek && Long.parseLong(i)<=endCurrentWeek)
                         countWeek+=stringLongHashMap.get(i);
-                    if (Integer.parseInt(i) >=beginCurrentMonth &&Integer.parseInt(i)<=endCurrentMonth)
+                    if (Long.parseLong(i) >=beginCurrentMonth && Long.parseLong(i)<=endCurrentMonth)
                         countMonth+=stringLongHashMap.get(i);
-                    if (Integer.parseInt(i) >=beginCurrentYear &&Integer.parseInt(i)<=endCurrentYear)
+                    if (Long.parseLong(i) >=beginCurrentYear && Long.parseLong(i)<=endCurrentYear)
                         countYear+=stringLongHashMap.get(i);
                     total+=stringLongHashMap.get(i);
                 }
@@ -335,7 +339,6 @@ public class StatisticViewModel extends ViewModel {
                 num.add(countMonth);
                 num.add(countYear);
                 num.add(total);
-
                 totalDailyTaskNum.postValue(num);
             }
         });
@@ -346,14 +349,14 @@ public class StatisticViewModel extends ViewModel {
             @Override
             public void onChanged(HashMap<String, UserTask> stringUserTaskHashMap) {
                 ArrayList<Integer> den = new ArrayList<>();
-                long beginCurrentDay = currentTime.getValue() - currentTime.getValue() % millisecPerDay;
+                long beginCurrentDay = System.currentTimeMillis() - System.currentTimeMillis() % millisecPerDay;
                 long endCurrentDay = beginCurrentDay + millisecPerDay - 1;
                 long beginCurrentYear = getBeginCurrentYearMilisec();
                 long endCurrentYear = getEndCurrentYearMilisec();
                 long beginCurrentMonth = getBeginCurrentMonthMilisec();
                 long endCurrentMonth = getEndCurrentMonthMilisec();
-                long beginCurrentWeek = currentTime.getValue() - currentTime.getValue() % millisecPerWeek;
-                long endCurrentWeek = beginCurrentWeek + millisecPerDay - 1;
+                long beginCurrentWeek = System.currentTimeMillis() - System.currentTimeMillis() % millisecPerWeek;
+                long endCurrentWeek = beginCurrentWeek + millisecPerWeek - 1;
 
 
 
@@ -371,13 +374,15 @@ public class StatisticViewModel extends ViewModel {
 
                 }
 
+
+
                 for (UserTask userTask: stringUserTaskHashMap.values()) {
 
                     countDay+=countTask(userTask.start, userTask.repeat, beginCurrentDay,endCurrentDay);
-                    countDay+=countTask(userTask.start, userTask.repeat, beginCurrentDay,endCurrentDay);
-                    countDay+=countTask(userTask.start, userTask.repeat, beginCurrentDay,endCurrentDay);
-                    countDay+=countTask(userTask.start, userTask.repeat, beginCurrentDay,endCurrentDay);
-                    total+=countTask(userTask.start, userTask.repeat, minn,currentTime.getValue());
+                    countWeek+=countTask(userTask.start, userTask.repeat, beginCurrentWeek,System.currentTimeMillis());
+                    countMonth+=countTask(userTask.start, userTask.repeat, beginCurrentMonth,System.currentTimeMillis());
+                    countYear+=countTask(userTask.start, userTask.repeat, beginCurrentYear,System.currentTimeMillis());
+                    total+=countTask(userTask.start, userTask.repeat, minn,System.currentTimeMillis());
                 }
 
                 den.add(countDay);
@@ -402,21 +407,41 @@ public class StatisticViewModel extends ViewModel {
         }
         else
         {
-            int s = (int)((begin - start)/repeat);
-            int e = (int)((end - start)/repeat);
-            ans= e-s+1;
+            long s = (begin - start)/repeat;
+            long e = (end - start)/repeat;
+            if (start == 1640304000000L)
+            {
+                Log.d("start end repeat",String.valueOf(begin) );
+                Log.d("start end repeat",String.valueOf(end) );
+                Log.d("start end repeat",String.valueOf(start) );
+                //Log.d("endddddddddddddddddd",String.valueOf(end));
 
+
+            }
+            if (s*repeat < begin-start)
+                s+=1;
+            Log.d("start end repeat",String.valueOf(s) );
+            Log.d("start end repeat",String.valueOf(e) );
+            if (s<0)
+                s=0;
+            if (e<0)
+                e=-1;
+            ans = (int) (e-s+1);
+            Log.d("ansssss",String.valueOf(ans) );
         }
         return ans;
     }
 
     public void getTotalDailyTaskListCompleted(){
-        ArrayList<Double> temp = new ArrayList<>();
+        ArrayList<Integer> temp = new ArrayList<>();
         ArrayList<Integer> num = totalDailyTaskNum.getValue();
         ArrayList<Integer> den = totalDailyTaskDen.getValue();
         int s = num.size();
         for(int i=0;i<s;++i){
-            temp.add(1.0*num.get(i)/den.get(i));
+            if (den.get(i)==0)
+                temp.add(0);
+            else
+                temp.add(100*num.get(i)/den.get(i));
         }
         totalDailyTasksCompleted.postValue(temp);
     }
@@ -483,8 +508,8 @@ public class StatisticViewModel extends ViewModel {
 
 
                     for (String j : stringLongHashMap.keySet()) {
-                        if (Integer.parseInt(j) >=beginDay &&Integer.parseInt(j)<=endDay)
-                            count+=stringLongHashMap.get(i);
+                        if (Long.parseLong(j) >=beginDay &&Long.parseLong(j)<=endDay)
+                            count+=stringLongHashMap.get(j);
                     }
 
         //viet lai
@@ -495,6 +520,8 @@ public class StatisticViewModel extends ViewModel {
                     dailyTaskListNum.add(count);
 
                 }
+                for (int i=day;i<31;++i)
+                    dailyTaskListNum.add(null);
                 dailyTaskNumStatistic.setValue(dailyTaskListNum);
 
             }
@@ -526,7 +553,7 @@ public class StatisticViewModel extends ViewModel {
 
                     for(UserTask userTask: stringUserTaskHashMap.values())
                     {
-                        count = countTask(userTask.start,userTask.repeat,beginDay,endDay);
+                        count += countTask(userTask.start,userTask.repeat,beginDay,endDay);
                     }
                     //viet lai
 //                    for (UserEvent t : dailyTaskListNum.values()){
@@ -536,6 +563,8 @@ public class StatisticViewModel extends ViewModel {
                     dailyTaskListDen.add(count);
 
                 }
+                for (int i=day;i<31;++i)
+                    dailyTaskListDen.add(null);
                 dailyTaskDenStatistic.setValue(dailyTaskListDen);
 
             }
@@ -543,14 +572,17 @@ public class StatisticViewModel extends ViewModel {
     }
 
     public void initDailyTaskListStatistic(){
-        ArrayList<Double> temp = new ArrayList<>();
+        ArrayList<Integer> temp = new ArrayList<>();
         ArrayList<Integer> num = dailyTaskNumStatistic.getValue();
         ArrayList<Integer> den = dailyTaskDenStatistic.getValue();
         int s = num.size();
         for (int i=0;i<s;++i){
-            temp.add(1.0*num.get(i)/den.get(i));
+            if (den.get(i)==0)
+                temp.add(0);
+            else
+                temp.add(100*num.get(i)/den.get(i));
         }
-        totalDailyTasksCompleted.postValue(temp);
+        dailyTasksStatistic.postValue(temp);
     }
     private long getEndCurrentMonthMilisec() {
 
