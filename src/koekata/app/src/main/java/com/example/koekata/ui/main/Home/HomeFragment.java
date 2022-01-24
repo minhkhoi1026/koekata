@@ -1,6 +1,11 @@
 package com.example.koekata.ui.main.Home;
 
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -17,9 +22,13 @@ import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.koekata.BaseApplication;
 import com.example.koekata.R;
+import com.example.koekata.ui.auth.AuthActivity;
 import com.example.koekata.viewmodelprovider.ViewModelProviderFactory;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

@@ -37,20 +37,20 @@ public class UserEventAdapter extends RecyclerView.Adapter<UserEventAdapter.Even
     @NonNull
     @Override
     public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = layoutInflater.inflate(R.layout.user_event_recycler_item, parent, false);
+        View itemView = layoutInflater.inflate(R.layout.schedule_item, parent, false);
         return new EventViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         UserEvent item = items.get(position);
-        holder.setTextViewTitle("Title: " + item.title);
+        holder.setTextViewTitle(item.title);
 
         Date date = new Date(item.date);
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm", Locale.getDefault());
-        holder.setTextViewDate("Date: " + dateFormat.format(date));
+        holder.setTextViewDate(dateFormat.format(date));
 
-        holder.setTextViewDesc("Description: " + item.description);
+        holder.setTextViewDesc(item.description);
 
         holder.getDeleteButton().setOnClickListener(view -> {
             deleteClickedListener.OnDeleteClickedListener(item);
@@ -70,10 +70,10 @@ public class UserEventAdapter extends RecyclerView.Adapter<UserEventAdapter.Even
 
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewTitle = itemView.findViewById(R.id.text_view_title_event);
-            textViewDate = itemView.findViewById(R.id.text_view_date_event);
-            textViewDesc = itemView.findViewById(R.id.text_view_desc_event);
-            deleteButton = itemView.findViewById(R.id.button_delete_event);
+            textViewTitle = itemView.findViewById(R.id.tv_title_detail);
+            textViewDate = itemView.findViewById(R.id.tv_date_time_detail);
+            textViewDesc = itemView.findViewById(R.id.tv_description_detail);
+            deleteButton = itemView.findViewById(R.id.btn_delete);
         }
 
         public void setTextViewTitle(String title) {

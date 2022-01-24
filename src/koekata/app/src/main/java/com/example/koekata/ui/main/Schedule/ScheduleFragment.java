@@ -98,7 +98,7 @@ public class ScheduleFragment extends DaggerFragment implements UserEventAdapter
 
     private void showAddEventDialog() {
         final Dialog dialog = new Dialog(getContext());
-        dialog.setContentView(R.layout.dialog_add_event);
+        dialog.setContentView(R.layout.schedule_setting_dialog);
 
         Window window = dialog.getWindow();
 
@@ -119,7 +119,7 @@ public class ScheduleFragment extends DaggerFragment implements UserEventAdapter
         EditText editTextTitle = dialog.findViewById(R.id.edit_text_title);
         EditText editTextDate = dialog.findViewById(R.id.edit_text_date);
         EditText editTextDesc = dialog.findViewById(R.id.edit_text_desc);
-        Button buttonSubmit = dialog.findViewById(R.id.button_submit);
+        Button buttonSubmit = dialog.findViewById(R.id.btn_set);
         buttonSubmit.setOnClickListener(view -> {
             String title = editTextTitle.getText().toString();
 

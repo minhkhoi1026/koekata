@@ -198,7 +198,7 @@ public class MainActivity extends BaseActivity {
 
     private void showDisconnectedDialog() {
         dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_add_event);
+        dialog.setContentView(R.layout.warning_dialog);
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
 
