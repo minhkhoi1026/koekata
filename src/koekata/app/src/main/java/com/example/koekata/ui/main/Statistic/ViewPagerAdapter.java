@@ -19,10 +19,11 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
         switch (position){
             case 0:
                 return new PomodoroStatistic();
-            case 2:
-                return new DailyStatistic();
             case 1:
+                return new DailyStatistic();
+            case 2:
                 return new ScheduleStatistic();
+
             default:
                 return new PomodoroStatistic();
         }
