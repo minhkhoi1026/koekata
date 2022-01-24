@@ -3,8 +3,15 @@ package com.example.koekata.ui.main;
 import static com.example.koekata.utils.Constants.BASE_URL;
 import static com.example.koekata.utils.Constants.CONNECTION_ROOT;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +49,8 @@ public class MainActivity extends BaseActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+
+    private Dialog dialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,10 +156,32 @@ public class MainActivity extends BaseActivity {
     }
 
     private void showDisconnectedDialog() {
-        // TODO
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_add_event);
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+
+        Window window = dialog.getWindow();
+
+        if (window == null) {
+            return;
+        }
+
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.CENTER;
+        window.setAttributes(windowAttributes);
+
+        dialog.show();
     }
 
     private void hideDisconnectedDialog() {
-        // TODO
+        if (dialog != null) {
+            dialog.dismiss();
+            dialog = null;
+        }
     }
 }

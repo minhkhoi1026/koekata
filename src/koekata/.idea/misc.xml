@@ -3,39 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/drawable/ic_back.xml" value="0.18958333333333333" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/activity_auth.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/app_bar_main.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/content_main.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/custom_dropdown_spiner.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/custom_spinner.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/dialog_addminiscreen.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/dialog_pomodoro_setting.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_home.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_pomodoro.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_schedule.xml" value="0.175" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_slideshow.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_statistic.xml" value="0.144" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_statistic_daily.xml" value="0.1734375" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_statistic_pomodoro.xml" value="0.1734375" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_statistic_schedule.xml" value="0.1734375" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/fragment_wakeuptimecalculator.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/nav_header_main.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/tab_statistic.xml" value="0.1793478260869565" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/tab_statistic_dailytask.xml" value="0.23097826086956522" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/layout/tab_statistic_schedule.xml" value="0.23097826086956522" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/menu/activity_main_drawer.xml" value="0.13020833333333334" />
-        <entry key="..\:/IT/Mobile/Exercise/Koekata/koekata/src/koekata/app/src/main/res/menu/main.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/drawable/circle.xml" value="0.21197916666666666" />
-        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/drawable/tab_back.xml" value="0.21614583333333334" />
-        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/drawable/tab_back_select.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/layout/custom_dropdown_spiner.xml" value="0.13677536231884058" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/layout/custom_spinner.xml" value="0.13677536231884058" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/layout/dialog_pomodoro_setting.xml" value="0.22" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/layout/fragment_pomodoro.xml" value="0.15670289855072464" />
-        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/layout/fragment_statistic.xml" value="0.1" />
-        <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/layout/tab_statistic.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/Shigure/AndroidStudioProjects/Dagger2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Shigure/AndroidStudioProjects/Dagger2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.12129629629629629" />
         <entry key="..\:/Users/Shigure/AndroidStudioProjects/Dagger2/app/src/main/res/layout/actitivty_main.xml" value="0.15715579710144928" />
@@ -47,12 +19,27 @@
         <entry key="..\:/Users/Shigure/AndroidStudioProjects/Dagger2/app/src/main/res/menu/drawer_view.xml" value="0.259375" />
         <entry key="..\:/Users/Shigure/AndroidStudioProjects/Dagger2/app/src/main/res/menu/main_menu.xml" value="0.259375" />
         <entry key="..\:/Users/Shigure/AndroidStudioProjects/Dagger2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.12129629629629629" />
-        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/drawable/circle.xml" value="0.2755208333333333" />
-        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/drawable/dailytasklist_add_dialog_background.xml" value="0.2755208333333333" />
-        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/drawable/dailytasklist_background.xml" value="0.2755208333333333" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/activity_main.xml" value="0.15217391304347827" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/app_bar_main.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/content_main.xml" value="0.15217391304347827" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/custom_dropdown_spiner.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/custom_spinner.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/dailytasklist_add_dialog.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/dailytasklist_task_edit_item.xml" value="0.2" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/dailytasklist_task_item.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/dailytasklist_update_dialog.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/dialog_addminiscreen.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/dialog_pomodoro_setting.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/fragment_dailytasklist.xml" value="0.2" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/fragment_dailytasklist_edit.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/fragment_home.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/fragment_pomodoro.xml" value="0.259375" />
         <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/fragment_wakeuptimecalculator.xml" value="0.23177083333333334" />
-        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/notification.xml" value="0.259375" />
-        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/user_event_recycler_item.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/nav_header_main.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/tab_statistic.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/layout/task_list_item.xml" value="0.1403985507246377" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/menu/activity_main_drawer.xml" value="0.259375" />
+        <entry key="..\:/Users/Shigure/Desktop/Android/koekata/src/koekata/app/src/main/res/menu/main.xml" value="0.259375" />
         <entry key="..\:/playground/Android/Dagger2/app/src/main/res/drawable/ic_pomodoro_start.xml" value="0.15" />
         <entry key="..\:/playground/Android/Dagger2/app/src/main/res/layout/activity_auth.xml" value="0.12604166666666666" />
         <entry key="..\:/playground/Android/Dagger2/app/src/main/res/layout/activity_main.xml" value="0.259375" />
@@ -63,6 +50,25 @@
         <entry key="..\:/playground/Android/Dagger2/app/src/main/res/layout/nav_header_main.xml" value="0.259375" />
         <entry key="..\:/playground/Android/Dagger2/app/src/main/res/menu/activity_main_drawer.xml" value="0.259375" />
         <entry key="..\:/playground/Android/Dagger2/app/src/main/res/menu/main.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/drawable/hour_box.xml" value="0.2755208333333333" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/activity_main.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/app_bar_main.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/calendar_day_layout.xml" value="0.13385416666666666" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/content_main.xml" value="0.13385416666666666" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/dialog_add_event.xml" value="0.11666666666666667" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/dialog_addminiscreen.xml" value="0.1046875" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/dialog_pomodoro_setting.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/fragment_pomodoro.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/fragment_schedule.xml" value="0.13385416666666666" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/fragment_wakeuptime.xml" value="0.13385416666666666" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/nav_header_main.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/layout/user_event_recycler_item.xml" value="0.2545289855072464" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/menu/activity_main_drawer.xml" value="0.259375" />
+        <entry key="..\:/playground/Android/koekata/src/koekata/app/src/main/res/menu/main.xml" value="0.259375" />
+        <entry key="..\:/workspace/Android/koekata/src/koekata/app/src/main/res/layout/activity_auth.xml" value="0.3111413043478261" />
+        <entry key="..\:/workspace/Android/koekata/src/koekata/app/src/main/res/layout/dialog_add_event.xml" value="0.3111413043478261" />
+        <entry key="..\:/workspace/Android/koekata/src/koekata/app/src/main/res/layout/nav_header_main.xml" value="0.3111413043478261" />
       </map>
     </option>
   </component>
