@@ -50,6 +50,10 @@ public class DailyTaskListRecyclerAdapter
         notifyDataSetChanged();
     }
 
+    public List<Map.Entry<String, UserDailyTask>> getTasks() {
+        return tasks;
+    }
+
     public class TaskListViewHolder extends RecyclerView.ViewHolder{
         CheckBox cb;
 

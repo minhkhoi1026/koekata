@@ -14,6 +14,8 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="DailyTask">Daily Task</string>
     <string name="textholder">TextHolder</string>
+    <string name="channel_name">Daily Tasks</string>
+    <string name="channel_description">Daily Tasks</string>
 
     <string-array name="repeat_time">
         <item>0</item>

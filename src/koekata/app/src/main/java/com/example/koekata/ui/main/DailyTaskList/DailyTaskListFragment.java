@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.koekata.R;
 import com.example.koekata.databinding.FragmentDailytasklistBinding;
+import com.example.koekata.utils.NotificationUtils;
 import com.example.koekata.viewmodelprovider.ViewModelProviderFactory;
 
 import javax.inject.Inject;
@@ -22,6 +23,8 @@ import javax.inject.Inject;
 import dagger.android.support.DaggerFragment;
 
 public class DailyTaskListFragment extends DaggerFragment {
+
+    private static final int HOUR_NOTIFICATION = 8;
 
     private FragmentDailytasklistBinding binding;
     private DailyTaskListViewModel viewModel;
@@ -42,13 +45,12 @@ public class DailyTaskListFragment extends DaggerFragment {
         super.onViewCreated(view, savedInstanceState);
         initRecyclerView(view);
         subscribeObservers();
+        reminderNotification();
 
         assert getActivity() != null;
         Button btn = view.findViewById(R.id.btnEdit);
-        btn.setOnClickListener(v -> {
-            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_main)
-                    .navigate(R.id.action_nav_dailytasklist_to_nav_dailytasklist_edit);
-        });
+        btn.setOnClickListener(v -> Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_main)
+                .navigate(R.id.action_nav_dailytasklist_to_nav_dailytasklist_edit));
     }
 
     private void subscribeObservers() {
@@ -76,5 +78,10 @@ public class DailyTaskListFragment extends DaggerFragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public void reminderNotification() {
+        NotificationUtils notificationUtils = new NotificationUtils(getActivity());
+        notificationUtils.setReminder(HOUR_NOTIFICATION);
     }
 }

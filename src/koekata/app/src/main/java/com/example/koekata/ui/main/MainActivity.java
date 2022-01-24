@@ -1,11 +1,14 @@
 package com.example.koekata.ui.main;
 
+import static com.example.koekata.utils.Constants.BASE_URL;
+import static com.example.koekata.utils.Constants.CONNECTION_ROOT;
+
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -19,7 +22,11 @@ import com.example.koekata.databinding.ActivityMainBinding;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import javax.inject.Inject;
 
@@ -72,6 +79,8 @@ public class MainActivity extends BaseActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        handleDisconnection();
     }
 
     @Override
@@ -117,4 +126,31 @@ public class MainActivity extends BaseActivity {
         AuthUI.getInstance().delete(this);
     }
 
+    private void handleDisconnection() {
+        FirebaseDatabase
+                .getInstance(BASE_URL)
+                .getReference()
+                .child(CONNECTION_ROOT)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Boolean connected = snapshot.getValue(Boolean.class);
+                        if (connected == null || !connected) {
+                            showDisconnectedDialog();
+                        } else {
+                            hideDisconnectedDialog();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) { }
+                });
+    }
+
+    private void showDisconnectedDialog() {
+        // TODO
+    }
+
+    private void hideDisconnectedDialog() {
+        // TODO
+    }
 }
