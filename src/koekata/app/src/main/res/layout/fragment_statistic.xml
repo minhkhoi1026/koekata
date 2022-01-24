@@ -4,74 +4,76 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
+<!--    <FrameLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:background="@drawable/tab_back">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/select"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text=""-->
+<!--                android:background="@drawable/tab_back_select"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="" />-->
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="horizontal">-->
+<!--            <TextView-->
+<!--                android:id="@+id/item1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Pomodoro"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                android:gravity="center"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/item2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Daily-task-list"-->
+<!--                android:textColor="@color/primary_color"-->
+<!--                android:gravity="center"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/item3"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Schedule"-->
+<!--                android:textColor="@color/primary_color"-->
+<!--                android:gravity="center"/>-->
+
+<!--        </LinearLayout>-->
+
+
+<!--    </FrameLayout>-->
+
+    <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/tab_back">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/select"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text=""
-                android:background="@drawable/tab_back_select"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/item1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Pomodoro"
-                android:textColor="@android:color/white"
-                android:gravity="center"/>
-
-            <TextView
-                android:id="@+id/item2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Daily-task-list"
-                android:textColor="@color/primary_color"
-                android:gravity="center"/>
-
-            <TextView
-                android:id="@+id/item3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Schedule"
-                android:textColor="@color/primary_color"
-                android:gravity="center"/>
-
-        </LinearLayout>
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/view_pager"/>
-    </FrameLayout>
+        android:layout_height="match_parent"
+        android:id="@+id/view_pager"/>
 </LinearLayout>
