@@ -7,5 +7,5 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
-rootProject.name = "Dagger2"
+rootProject.name = "Koekata"
 include ':app'

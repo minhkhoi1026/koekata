@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.dagger2",
+  "applicationId": "com.example.koekata",
   "variantName": "debug",
   "elements": [
     {

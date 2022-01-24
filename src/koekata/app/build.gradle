@@ -11,7 +11,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.dagger2"
+        applicationId "com.example.koekata"
         minSdk 26
         targetSdk 31
         versionCode 1
