@@ -60,6 +60,14 @@
           }
         },
         {
+          "client_id": "475327108867-p99gh8ln3bdmdbeuvhanh7ansa4hurtq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.koekata",
+            "certificate_hash": "542894f6e6df79850de465dd07379156ab364c58"
+          }
+        },
+        {
           "client_id": "475327108867-2flgdfkh2802u5qtjc5qaqqq922hl4tn.apps.googleusercontent.com",
           "client_type": 3
         }

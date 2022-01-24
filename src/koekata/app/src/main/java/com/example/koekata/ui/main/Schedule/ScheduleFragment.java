@@ -116,9 +116,9 @@ public class ScheduleFragment extends DaggerFragment implements UserEventAdapter
 
         dialog.show();
 
-        EditText editTextTitle = dialog.findViewById(R.id.edit_text_title);
-        EditText editTextDate = dialog.findViewById(R.id.edit_text_date);
-        EditText editTextDesc = dialog.findViewById(R.id.edit_text_desc);
+        EditText editTextTitle = dialog.findViewById(R.id.et_title);
+        EditText editTextDate = dialog.findViewById(R.id.et_date);
+        EditText editTextDesc = dialog.findViewById(R.id.et_description);
         Button buttonSubmit = dialog.findViewById(R.id.btn_set);
         buttonSubmit.setOnClickListener(view -> {
             String title = editTextTitle.getText().toString();
