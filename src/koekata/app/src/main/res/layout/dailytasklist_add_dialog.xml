@@ -53,10 +53,7 @@
     <Spinner
         android:id="@+id/sp_repeat"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:textSize="18sp"
-        android:textColor="#0288D1"
+        android:layout_height="30dp"
         android:background="@drawable/dailytasklist_textbox"
         app:layout_constraintTop_toBottomOf="@id/tv_repeat"
         app:layout_constraintRight_toRightOf="parent"

@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/3rdYear/NMCNPM/Koekata/koekata/src/koekata/app/src/main/res/drawable/dailytasklist_background.xml" value="0.1" />
+        <entry key="..\:/3rdYear/NMCNPM/Koekata/koekata/src/koekata/app/src/main/res/drawable/schedule_setting_dialog_background.xml" value="0.1" />
+        <entry key="..\:/3rdYear/NMCNPM/Koekata/koekata/src/koekata/app/src/main/res/drawable/schedule_task_background.xml" value="0.1" />
+        <entry key="..\:/3rdYear/NMCNPM/Koekata/koekata/src/koekata/app/src/main/res/drawable/side_nav_bar.xml" value="0.1" />
+        <entry key="..\:/3rdYear/NMCNPM/Koekata/koekata/src/koekata/app/src/main/res/layout/custom_spinner.xml" value="0.1" />
+        <entry key="..\:/3rdYear/NMCNPM/Koekata/koekata/src/koekata/app/src/main/res/layout/dailytasklist_add_dialog.xml" value="0.1" />
+        <entry key="..\:/3rdYear/NMCNPM/Koekata/koekata/src/koekata/app/src/main/res/layout/dailytasklist_task_edit_item.xml" value="0.1" />
+        <entry key="..\:/3rdYear/NMCNPM/Koekata/koekata/src/koekata/app/src/main/res/layout/dailytasklist_update_dialog.xml" value="0.1" />
+        <entry key="..\:/3rdYear/NMCNPM/Koekata/koekata/src/koekata/app/src/main/res/layout/schedule_item.xml" value="0.1" />
+        <entry key="..\:/3rdYear/NMCNPM/Koekata/koekata/src/koekata/app/src/main/res/layout/schedule_setting_dialog.xml" value="0.1" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/drawable/circle.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/layout/custom_dropdown_spiner.xml" value="0.13677536231884058" />
         <entry key="..\:/Users/COMPUTER/Desktop/koekata/src/koekata/app/src/main/res/layout/custom_spinner.xml" value="0.13677536231884058" />
@@ -73,7 +83,7 @@
         <entry key="..\:/workspace/Android/koekata/src/koekata/app/src/main/res/layout/nav_header_main.xml" value="0.3111413043478261" />
         <entry key="..\:/workspace/Android/koekata/src/koekata/app/src/main/res/layout/schedule_date_time_textbox.xml" value="0.3111413043478261" />
         <entry key="..\:/workspace/Android/koekata/src/koekata/app/src/main/res/layout/schedule_item.xml" value="0.3111413043478261" />
-        <entry key="..\:/workspace/Android/koekata/src/koekata/app/src/main/res/layout/schedule_setting_dialog.xml" value="0.33" />
+        <entry key="..\:/workspace/Android/koekata/src/koekata/app/src/main/res/layout/schedule_setting_dialog.xml" value="0.3111413043478261" />
         <entry key="..\:/workspace/Android/koekata/src/koekata/app/src/main/res/layout/schedule_setting_dialog_background.xml" value="0.3111413043478261" />
         <entry key="..\:/workspace/Android/koekata/src/koekata/app/src/main/res/layout/schedule_task_background.xml" value="0.3111413043478261" />
         <entry key="..\:/workspace/Android/koekata/src/koekata/app/src/main/res/layout/schedule_textbox.xml" value="0.3111413043478261" />
