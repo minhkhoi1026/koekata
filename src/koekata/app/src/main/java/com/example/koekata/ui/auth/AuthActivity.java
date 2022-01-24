@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.koekata.R;
 import com.example.koekata.ui.main.MainActivity;
+import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
@@ -74,12 +75,21 @@ public class AuthActivity extends DaggerAppCompatActivity {
     }
 
     private void launchSignInProviders() {
+        // Custom layout
+        AuthMethodPickerLayout customLayout = new AuthMethodPickerLayout
+                .Builder(R.layout.login_layout)
+                .setGoogleButtonId(R.id.login_google_button)
+                .setAnonymousButtonId(R.id.login_anonymous_button)
+                .build();
+
         Intent intent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setIsSmartLockEnabled(false)
                 .setAvailableProviders(providers)
                 .enableAnonymousUsersAutoUpgrade()
+                .setAuthMethodPickerLayout(customLayout)
                 .build();
+
 
         signInLauncher.launch(intent);
     }
