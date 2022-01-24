@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
+    android:orientation="vertical"
     android:background="@drawable/schedule_setting_dialog_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -17,7 +18,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/tv_title"
@@ -71,35 +73,6 @@
         android:layout_marginTop="5dp"/>
 
     <TextView
-        android:id="@+id/tv_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Time"
-        android:textSize="18sp"
-        android:textColor="#0288D1"
-        app:layout_constraintTop_toBottomOf="@+id/et_title"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="180dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"/>
-
-    <EditText
-        android:id="@+id/et_time"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp"
-        android:textSize="18sp"
-        android:textColor="#0288D1"
-        android:background="@drawable/schedule_date_time_textbox"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_date"
-        android:layout_marginLeft="180dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"/>
-
-    <TextView
         android:id="@+id/tv_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -142,6 +115,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
