@@ -45,6 +45,72 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:475327108867:android:3a0d359ae79435b038bb36",
+        "android_client_info": {
+          "package_name": "com.example.koekata"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475327108867-7bqmokjtjaaa40o4rtikqo67bmn5flt8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.koekata",
+            "certificate_hash": "d9376ecb0e427aaea76537306525706d42420432"
+          }
+        },
+        {
+          "client_id": "475327108867-2flgdfkh2802u5qtjc5qaqqq922hl4tn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVJene3223DVOh-w0VmSHXkdJWbh7VtQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "475327108867-2flgdfkh2802u5qtjc5qaqqq922hl4tn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475327108867:android:dd1801a57eb1474b38bb36",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475327108867-2flgdfkh2802u5qtjc5qaqqq922hl4tn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVJene3223DVOh-w0VmSHXkdJWbh7VtQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "475327108867-2flgdfkh2802u5qtjc5qaqqq922hl4tn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:475327108867:android:9b12e19675c1807238bb36",
         "android_client_info": {
           "package_name": "com.example.software"

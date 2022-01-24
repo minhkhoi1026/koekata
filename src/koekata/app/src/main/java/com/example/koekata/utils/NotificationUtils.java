@@ -6,11 +6,6 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 
-import com.example.koekata.ui.main.DailyTaskList.DailyTaskListViewModel;
-
-import java.util.List;
-import java.util.Map;
-
 
 public class NotificationUtils extends ContextWrapper {
 

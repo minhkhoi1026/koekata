@@ -29,6 +29,12 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
+        android:id="@+id/text_view_link_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Link account" />
+
+    <TextView
         android:id="@+id/text_view_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

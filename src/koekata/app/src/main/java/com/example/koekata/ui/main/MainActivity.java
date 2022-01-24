@@ -5,6 +5,8 @@ import static com.example.koekata.utils.Constants.CONNECTION_ROOT;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.bumptech.glide.Glide;
 import com.example.koekata.BaseActivity;
 import com.example.koekata.R;
 import com.example.koekata.databinding.ActivityMainBinding;
@@ -42,6 +45,8 @@ public class MainActivity extends BaseActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    private NavigationView navigationView;
+    private View headerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +66,11 @@ public class MainActivity extends BaseActivity {
 //
 //        });
         DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
+        navigationView = binding.navView;
         navigationView.setItemIconTintList(null);
-        TextView textViewLogOut = navigationView.getHeaderView(0).findViewById(R.id.text_view_logout);
-        textViewLogOut.setOnClickListener(view -> onLogOutSelected());
+
+        setupNavigationHeader();
+
         // navigationView.setItemTextColor();
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -81,6 +87,41 @@ public class MainActivity extends BaseActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         handleDisconnection();
+    }
+
+    public void setupNavigationHeader() {
+        TextView textViewLogOut = navigationView.getHeaderView(0).findViewById(R.id.text_view_logout);
+        textViewLogOut.setOnClickListener(view -> onLogOutSelected());
+        TextView textViewLinkAccount = navigationView.getHeaderView(0).findViewById(R.id.text_view_link_account);
+        textViewLinkAccount.setOnClickListener(view -> onLinkAccountSelected());
+        setupNavigationUserInfo();
+    }
+
+    private void setupNavigationUserInfo() {
+        headerView = navigationView.getHeaderView(0);
+        setupNavigationPhoto();
+        setupNavigationEmail();
+    }
+
+    private void setupNavigationPhoto() {
+        ImageView photoView = headerView.findViewById(R.id.image_view_user_avatar);
+        if (!firebaseUser.isAnonymous()) {
+            Glide.with(this).load(firebaseUser.getPhotoUrl())
+                    .fitCenter().into(photoView);
+        } else {
+            photoView.setImageResource(R.drawable.nav_bar_user);
+        }
+    }
+
+    private void setupNavigationEmail() {
+        TextView emailView = headerView.findViewById(R.id.text_view_username);
+        String email;
+        if (!firebaseUser.isAnonymous()) {
+            email = firebaseUser.getEmail();
+        } else {
+            email = "Anonymous User";
+        }
+        emailView.setText(email);
     }
 
     @Override
