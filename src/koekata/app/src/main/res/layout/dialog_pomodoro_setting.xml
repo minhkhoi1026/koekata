@@ -44,6 +44,7 @@
         app:layout_constraintBottom_toBottomOf="@id/text_study_time"
         app:layout_constraintRight_toRightOf="parent"
         android:entries="@array/study_time"
+        android:textAlignment="viewEnd"
         android:layout_marginRight="5dp" />
 
 
@@ -67,6 +68,7 @@
         app:layout_constraintBottom_toBottomOf="@id/text_short_relax"
         app:layout_constraintEnd_toEndOf="parent"
         android:entries="@array/short_relax_time"
+        android:textAlignment="viewEnd"
         android:layout_marginRight="5dp" />
 
     <TextView
@@ -89,6 +91,7 @@
         app:layout_constraintBottom_toBottomOf="@id/text_long_relax"
         app:layout_constraintEnd_toEndOf="parent"
         android:entries="@array/long_relax_time"
+        android:textAlignment="viewEnd"
         android:layout_marginRight="5dp" />
 
     <!--
