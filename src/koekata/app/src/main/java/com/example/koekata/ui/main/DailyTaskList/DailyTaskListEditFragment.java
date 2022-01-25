@@ -216,6 +216,9 @@ public class DailyTaskListEditFragment extends DaggerFragment {
 
         EditText from = dialog.findViewById(R.id.et_from);
         Long startDate = parseDate(from.getText().toString());
+        if (startDate == null) {
+            return new Pair<>(null, "Start date must be in dd/MM/yyyy format");
+        }
 
         Spinner spinner = dialog.findViewById(R.id.sp_repeat);
         return new Pair<>(
